@@ -1,0 +1,12 @@
+[
+  {
+    "icon": "home-outline",
+    "name": "Inicio",
+    "redirectTo": "/home"
+  },
+  {
+    "icon": "receipt-outline",
+    "name": "Mis pedidos",
+    "redirectTo": "/orders"
+  }
+]
