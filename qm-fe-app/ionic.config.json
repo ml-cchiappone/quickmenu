@@ -1,0 +1,7 @@
+{
+  "name": "quickmenu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
