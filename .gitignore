@@ -1,0 +1,32 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+*~
+*.sw[mnpcod]
+.tmp
+*.tmp
+*.tmp.*
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+UserInterfaceState.xcuserstate
+$RECYCLE.BIN/
+
+*.log
+log.txt
+npm-debug.log*
+
+/qm-fe-app/.idea
+/qm-fe-app/.angular
+/qm-fe-app/.ionic
+/qm-fe-app/.sass-cache
+/qm-fe-app/.sourcemaps
+/qm-fe-app/.versions
+/qm-fe-app/.vscode
+/qm-fe-app/coverage
+/qm-fe-app/dist
+/qm-fe-app/node_modules
+/qm-fe-app/platforms
+/qm-fe-app/plugins
+/qm-fe-app/www
