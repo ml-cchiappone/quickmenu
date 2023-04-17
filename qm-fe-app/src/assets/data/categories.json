@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "restaurant_id": 1,
+    "name": "Pizzas",
+    "description": "Descripción cat pizzas"
+  },
+  {
+    "id": 2,
+    "restaurant_id": 1,
+    "name": "Hamburguesas",
+    "description": "Descripción cat hamburguesas"
+  },
+  {
+    "id": 3,
+    "restaurant_id": 1,
+    "name": "Pastas",
+    "description": "Descripción cat pastas"
+  },
+  {
+    "id": 4,
+    "restaurant_id": 2,
+    "name": "Entradas",
+    "description": "Descripción cat entradas"
+  },
+  {
+    "id": 5,
+    "restaurant_id": 2,
+    "name": "Postres",
+    "description": "Descripción cat postres"
+  }
+]

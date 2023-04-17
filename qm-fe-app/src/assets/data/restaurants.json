@@ -1,0 +1,14 @@
+[
+  {
+    "id": "rufino",
+    "name": "Rufino",
+    "thumbnail": "home-outline",
+    "redirectTo": "/restaurant/rufino"
+  },
+  {
+    "id": "hipolito",
+    "name": "Hipólito",
+    "thumbnail": "home-outline",
+    "redirectTo": "/restaurant/hipolito"
+  }
+]

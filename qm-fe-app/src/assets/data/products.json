@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "category_id": 1,
+    "name": "Clásica",
+    "description": "Muzza"
+  },
+  {
+    "id": 2,
+    "category_id": 1,
+    "name": "Especial",
+    "description": "Muzza + Jamón"
+  },
+  {
+    "id": 3,
+    "category_id": 2,
+    "name": "Cheese Burger",
+    "description": "Doble queso"
+  },
+  {
+    "id": 4,
+    "category_id": 2,
+    "name": "Américana",
+    "description": "con lechuga  y tomate"
+  }
+]

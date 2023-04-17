@@ -1,0 +1,131 @@
+[
+  {
+    "id": 1,
+    "restaurant_id": 1,
+    "name": "Pizzas",
+    "description": "Descripción cat pizzas",
+    "products": [
+      {
+        "id": 1,
+        "name": "Clásica",
+        "description": "Muzza",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 2,
+        "name": "Especial",
+        "description": "Muzza + Jamón",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "restaurant_id": 1,
+    "name": "Hamburguesas",
+    "description": "Descripción cat hamburguesas",
+    "products": [
+      {
+        "id": 3,
+        "name": "Clásica",
+        "description": "Medallón de carne + queso",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 4,
+        "name": "Américana",
+        "description": "Medallón de carne + queso + tomate + lechuga",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "restaurant_id": 1,
+    "name": "Pastas",
+    "description": "Descripción cat pastas",
+    "products": [
+      {
+        "id": 5,
+        "name": "5",
+        "description": "5",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 6,
+        "name": "6",
+        "description": "6",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 7,
+        "name": "7",
+        "description": "7",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 8,
+        "name": "8",
+        "description": "8",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 9,
+        "name": "9",
+        "description": "9",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 10,
+        "name": "10",
+        "description": "10",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 11,
+        "name": "11",
+        "description": "11",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 12,
+        "name": "12",
+        "description": "12",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 13,
+        "name": "13",
+        "description": "13",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 14,
+        "name": "14",
+        "description": "14",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      },
+      {
+        "id": 15,
+        "name": "15",
+        "description": "15",
+        "thumbnail": "fast-food-outline",
+        "price": "$ 1200"
+      }
+    ]
+  }
+]
