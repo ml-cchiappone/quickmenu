@@ -1,27 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Menu } from 'src/app/interfaces/menu';
-import { MenuService } from '../../services/menu.service';
-import { MenuController } from '@ionic/angular';
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
+import { RestaurantService } from "../../services/restaurant.service";
+import { Restaurant } from "../../interfaces/restaurant";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: "app-home",
+  templateUrl: "./home.page.html",
+  styleUrls: ["./home.page.scss"]
 })
 export class HomePage implements OnInit {
+  restaurants: Observable<Restaurant[]>;
 
-  menu: Observable<Menu[]>;
+  constructor(private restaurantService: RestaurantService) {}
 
-  constructor( private menuCtrl: MenuController,
-    private menuService: MenuService ) { }
-
-ngOnInit() {
-this.menu = this.menuService.getMenuOpts();
-}
-
-mostrarMenu() {
-this.menuCtrl.open('first');
-}
-
+  ngOnInit() {
+    this.restaurants = this.restaurantService.getRestaurants(); // TODO: Si trae N, acotar a 3 y mostrar el CTA para ver todos
+  }
 }
