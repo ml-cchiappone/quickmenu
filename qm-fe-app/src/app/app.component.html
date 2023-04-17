@@ -8,12 +8,14 @@
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-item *ngFor="let m of menu | async"
-                    [routerLink]="m.redirectTo"
-                    detail>
-            <ion-icon [name]="m.icon" slot="start" color="primary"></ion-icon>
-            {{ m.name }}
-          </ion-item>
+          <ion-menu-toggle *ngFor="let m of menu | async">
+            <ion-item
+                      [routerLink]="m.redirectTo"
+                      detail>
+              <ion-icon [name]="m.icon" slot="start" color="primary"></ion-icon>
+              {{ m.name }}
+            </ion-item>
+          </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>
