@@ -1,0 +1,23 @@
+{
+  "id": 1,
+  "products": [
+    {
+      "id": 2,
+      "category_id": 1,
+      "name": "Especial",
+      "description": "Muzza + Jamón",
+      "thumbnail": "fast-food-outline",
+      "price": "$ 1200",
+      "quantity": "1"
+    },
+    {
+      "id": 3,
+      "category_id": 2,
+      "name": "Cheese Burger",
+      "description": "Doble queso",
+      "thumbnail": "fast-food-outline",
+      "price": "$ 1200",
+      "quantity": "3"
+    }
+  ]
+}
