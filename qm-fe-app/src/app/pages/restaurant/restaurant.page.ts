@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RestaurantService } from "../../services/restaurant.service";
 import { Category, Product } from "../../interfaces/restaurant";
-import { Observable } from "rxjs";
 
 @Component({
   selector: "app-restaurant",
@@ -36,6 +35,12 @@ export class RestaurantPage implements OnInit {
 
   changeSegment(event) {
     this.category = event.detail.value;
+  }
+
+  addProductInOrder(productId){
+    // TODO: Agregar productos al carrito
+    console.log(productId);
+    
   }
 
   getRestaurantProducts() {
