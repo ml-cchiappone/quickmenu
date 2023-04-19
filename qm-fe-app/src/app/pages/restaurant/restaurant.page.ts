@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RestaurantService } from "../../services/restaurant.service";
 import { Category, Product } from "../../interfaces/restaurant";
+import { StorageService } from "src/app/services/storage.service";
 
 @Component({
   selector: "app-restaurant",
@@ -13,13 +14,16 @@ export class RestaurantPage implements OnInit {
   categories: Category[];
   products: Product[];
   category: number;
+  productsOrder: Product[];
+  totalAmount: number;
 
   constructor(
     private route: ActivatedRoute,
-    private restaurantService: RestaurantService
+    private restaurantService: RestaurantService,
+    private storageService: StorageService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     /* 
     TODO:
     # validar parámetro
@@ -31,16 +35,12 @@ export class RestaurantPage implements OnInit {
 
     console.log(this.restaurantId);
     this.getRestaurantCategoriesAndProducts();
+    await this.getProductFromStorage();
+    this.calculateTotalAmount();
   }
 
   changeSegment(event) {
     this.category = event.detail.value;
-  }
-
-  addProductInOrder(productId){
-    // TODO: Agregar productos al carrito
-    console.log(productId);
-    
   }
 
   getRestaurantProducts() {
@@ -87,5 +87,23 @@ export class RestaurantPage implements OnInit {
     } catch (error) {
       // TODO: manejar el error
     }
+  }
+
+  async getProductFromStorage() {
+    this.productsOrder = await this.storageService.get("products_order");
+  }
+
+  addProductInOrder(product) {
+    this.productsOrder
+      ? this.productsOrder.push(product)
+      : (this.productsOrder = [product]);
+    this.storageService.set("products_order", this.productsOrder);
+    this.calculateTotalAmount();
+  }
+
+  calculateTotalAmount() {
+    this.totalAmount = this.productsOrder?.reduce((total, product) => {
+      return total + product.price;
+    }, 0);
   }
 }

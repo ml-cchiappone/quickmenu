@@ -20,4 +20,5 @@ export interface Product {
   description: string;
   thumbnail: string;
   price: number;
+  quality?: number;
 }

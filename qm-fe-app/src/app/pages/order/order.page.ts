@@ -20,11 +20,11 @@ export class OrderPage implements OnInit {
   ngOnInit() {
     this.orderId = this.route.snapshot.params.id; // TODO: Validar parámetro
     console.log(this.orderId);
-    this.getOrder(this.orderId)
+    this.getOrder(this.orderId);
   }
-// TODO: Manejar cantidades
-//  Poder sacar/agregar productos del carrito
- 
+  // TODO: Manejar cantidades
+  //  Poder sacar/agregar productos del carrito
+
   getOrder(orderId: number) {
     try {
       this.orderService
@@ -35,7 +35,6 @@ export class OrderPage implements OnInit {
             if (resp) {
               this.order = resp;
               console.log(this.order);
-              
             } else {
               // TODO: Si la respuesta no es valida, navegar a página de error
             }
