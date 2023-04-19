@@ -23,4 +23,7 @@ export class StorageService {
   async get(key) {
     return await this.storage.get(key);
   }
+  clear() {
+    return this.storage.clear();
+  }
 }
