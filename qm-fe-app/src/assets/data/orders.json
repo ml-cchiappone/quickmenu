@@ -7,7 +7,7 @@
       "name": "Especial",
       "description": "Muzza + Jamón",
       "thumbnail": "fast-food-outline",
-      "price": "$ 1200",
+      "unitPrice": "$ 1200",
       "quantity": "1"
     },
     {
@@ -16,7 +16,7 @@
       "name": "Cheese Burger",
       "description": "Doble queso",
       "thumbnail": "fast-food-outline",
-      "price": "$ 1200",
+      "unitPrice": "$ 1200",
       "quantity": "3"
     }
   ]
