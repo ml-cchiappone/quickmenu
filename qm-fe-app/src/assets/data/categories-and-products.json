@@ -7,17 +7,19 @@
     "products": [
       {
         "id": 1,
-        "name": "Clásica",
+        "category_id": 1,
+        "name": "Pizza clásica",
         "description": "Muzza",
         "thumbnail": "fast-food-outline",
-        "price": 1300
+        "unitPrice": 1300
       },
       {
         "id": 2,
-        "name": "Especial",
+        "category_id": 1,
+        "name": "Pizza especial",
         "description": "Muzza + Jamón",
         "thumbnail": "fast-food-outline",
-        "price": 1200
+        "unitPrice": 1200
       }
     ]
   },
@@ -29,17 +31,19 @@
     "products": [
       {
         "id": 3,
-        "name": "Clásica",
+        "category_id": 2,
+        "name": "Hamburguesa clásica",
         "description": "Medallón de carne + queso",
         "thumbnail": "fast-food-outline",
-        "price": 1400
+        "unitPrice": 1400
       },
       {
         "id": 4,
-        "name": "Américana",
+        "category_id": 2,
+        "name": "Hamburguesa américana",
         "description": "Medallón de carne + queso + tomate + lechuga",
         "thumbnail": "fast-food-outline",
-        "price": 1600
+        "unitPrice": 1600
       }
     ]
   },
@@ -51,80 +55,91 @@
     "products": [
       {
         "id": 5,
-        "name": "5",
+        "category_id": 3,
+        "name": "Pasta 5",
         "description": "5",
         "thumbnail": "fast-food-outline",
-        "price": 2100
+        "unitPrice": 2100
       },
       {
         "id": 6,
-        "name": "6",
+        "category_id": 3,
+        "name": "Pasta 6",
         "description": "6",
         "thumbnail": "fast-food-outline",
-        "price": 1900
+        "unitPrice": 1900
       },
       {
         "id": 7,
-        "name": "7",
+        "category_id": 3,
+        "name": "Pasta 7",
         "description": "7",
         "thumbnail": "fast-food-outline",
-        "price": 1200
+        "unitPrice": 1200
       },
       {
         "id": 8,
-        "name": "8",
+        "category_id": 3,
+        "name": "Pasta 8",
         "description": "8",
         "thumbnail": "fast-food-outline",
-        "price": 1200
+        "unitPrice": 1200
       },
       {
         "id": 9,
-        "name": "9",
+        "category_id": 3,
+        "name": "Pasta 9",
         "description": "9",
         "thumbnail": "fast-food-outline",
-        "price": 1200
+        "unitPrice": 1200
       },
       {
         "id": 10,
-        "name": "10",
+        "category_id": 3,
+        "name": "Pasta 10",
         "description": "10",
         "thumbnail": "fast-food-outline",
-        "price": 1900
+        "unitPrice": 1900
       },
       {
         "id": 11,
-        "name": "11",
+        "category_id": 3,
+        "name": "Pasta 11",
         "description": "11",
         "thumbnail": "fast-food-outline",
-        "price": 1900
+        "unitPrice": 1900
       },
       {
         "id": 12,
-        "name": "12",
+        "category_id": 3,
+        "name": "Pasta 12",
         "description": "12",
         "thumbnail": "fast-food-outline",
-        "price": 1900
+        "unitPrice": 1900
       },
       {
         "id": 13,
-        "name": "13",
+        "category_id": 3,
+        "name": "Pasta 13",
         "description": "13",
         "thumbnail": "fast-food-outline",
-        "price": 1900
+        "unitPrice": 1900
       },
       {
         "id": 14,
-        "name": "14",
+        "category_id": 3,
+        "name": "Pasta 14",
         "description": "14",
         "thumbnail": "fast-food-outline",
-        "price": 1900
+        "unitPrice": 1900
       },
       {
         "id": 15,
-        "name": "15",
+        "category_id": 3,
+        "name": "Pasta 15",
         "description": "15",
         "thumbnail": "fast-food-outline",
-        "price": 1900
+        "unitPrice": 1900
       }
     ]
   }
