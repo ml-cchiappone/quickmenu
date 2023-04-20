@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { OrderService } from "../../services/order.service";
 import { Order } from "src/app/interfaces/order";
 import { StorageService } from "../../services/storage.service";
-import { Product, Restaurant } from "../../interfaces/restaurant";
+import { Product } from "../../interfaces/restaurant";
+import { AlertController, NavController } from "@ionic/angular";
 
 @Component({
   selector: "app-order",
@@ -18,9 +19,10 @@ export class OrderPage implements OnInit {
   totalAmount: number;
   constructor(
     private orderService: OrderService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private alertController: AlertController,
+    private navController: NavController
   ) {}
-
   async ngOnInit() {
     // TODO: no hay orden ni productos => volver a la page del restaurant
     // TODO: salgo de la orden, elimino pedido
@@ -77,5 +79,28 @@ export class OrderPage implements OnInit {
     });
     this.storageService.set("order", this.order);
     this.calculateTotalAmount();
+  }
+
+  async backGuard() {
+    const alert = await this.alertController.create({
+      header: "Cuidado!",
+      message: "Al volver tu orden se perderá. ¿Deseas continuar?",
+      buttons: [
+        {
+          text: "Si",
+          handler: () => {
+            this.navController.navigateBack("/");
+            this.storageService.clear();
+          },
+          cssClass: "rojo"
+        },
+        {
+          text: "No",
+          role: "cancel"
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }
