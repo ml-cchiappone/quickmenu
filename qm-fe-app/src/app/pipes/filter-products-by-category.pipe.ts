@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: "filterProducts"
+  name: "filterProductsByCategory"
 })
-export class FilterProductsPipe implements PipeTransform {
+export class FilterProductsByCategoryPipe implements PipeTransform {
   transform(array: any[], category_id: number): any[] {
     return !array || !category_id
       ? array
