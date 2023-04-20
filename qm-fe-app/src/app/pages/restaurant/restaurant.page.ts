@@ -103,7 +103,7 @@ export class RestaurantPage implements OnInit {
 
   calculateTotalAmount() {
     this.totalAmount = this.productsOrder?.reduce((total, product) => {
-      return total + product.price;
+      return total + product.unitPrice;
     }, 0);
   }
 }

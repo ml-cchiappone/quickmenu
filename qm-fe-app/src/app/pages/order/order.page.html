@@ -10,19 +10,19 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let product of order?.products"> 
-      <ion-icon [name]="product.thumbnail" slot="start" color="medium"></ion-icon>
+      <ion-icon [name]="product?.thumbnail" slot="start" color="medium"></ion-icon>
       <ion-label>
-        <h3>{{product.name}}</h3>
-        <p>{{product.description}}</p>
-        <p>{{product.price}}</p>
+        <h3>{{product?.name}}</h3>
+        <p>{{product?.description}}</p>
+        <p>$ {{product?.totalPrice}}</p>
       </ion-label>
-      <ion-button shape="circle">
+      <ion-button shape="circle" color="light" (click)="changeProductsFromOrder(product, 'delete')">
         <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
       </ion-button>
       <ion-text class="quantity">
-        {{product.quantity}}
+        {{product?.quantity}}
       </ion-text>
-      <ion-button shape="circle">
+      <ion-button shape="circle" (click)="changeProductsFromOrder(product, 'put')">
         <ion-icon slot="icon-only" name="add-outline"></ion-icon>
       </ion-button>
     </ion-item>
@@ -32,10 +32,9 @@
 <ion-footer>
   <ion-toolbar>
     <ion-title size="small">Subtotal</ion-title>
-    <!-- TODO: Sumar subtotal -->
-    <ion-title size="small" slot="end">$ 2400</ion-title>
+    <ion-title size="small" slot="end">$ {{totalAmount}}</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-button expand="full">Ir a pagar</ion-button>
+    <ion-button expand="full">Realizar pedido</ion-button>
   </ion-toolbar>
 </ion-footer>

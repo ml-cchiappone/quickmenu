@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { OrderService } from "../../services/order.service";
-import { ActivatedRoute } from "@angular/router";
 import { Order } from "src/app/interfaces/order";
+import { StorageService } from "../../services/storage.service";
+import { Product, Restaurant } from "../../interfaces/restaurant";
 
 @Component({
   selector: "app-order",
@@ -10,42 +11,71 @@ import { Order } from "src/app/interfaces/order";
 })
 export class OrderPage implements OnInit {
   orderId: number;
-  order: Order;
-
+  order: Order = {
+    products: []
+  };
+  productsOrder: Product[];
+  totalAmount: number;
   constructor(
-    private route: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private storageService: StorageService
   ) {}
 
-  ngOnInit() {
-    this.orderId = this.route.snapshot.params.id; // TODO: Validar parámetro
-    console.log(this.orderId);
-    this.getOrder(this.orderId);
+  async ngOnInit() {
+    // TODO: no hay orden ni productos => volver a la page del restaurant
+    // TODO: salgo de la orden, elimino pedido
+    await this.getOrder();
+    this.createOrUpdateOrderEntity();
+    this.calculateTotalAmount();
   }
-  // TODO: Manejar cantidades
-  //  Poder sacar/agregar productos del carrito
 
-  getOrder(orderId: number) {
-    try {
-      this.orderService
-        .getOrder()
-        // TODO: Validar modelo de la respuesta
-        .subscribe(
-          (resp) => {
-            if (resp) {
-              this.order = resp;
-              console.log(this.order);
-            } else {
-              // TODO: Si la respuesta no es valida, navegar a página de error
-            }
-          },
-          (err) => {
-            console.log(err);
-            // TODO: Si el servicio falla, navegar a pagína de error
-          }
-        );
-    } catch (error) {
-      // TODO: manejar el error
+  async getOrder() {
+    this.order = await this.storageService.get("order");
+    if (!this.order) {
+      this.productsOrder = await this.storageService.get("products_order");
     }
+  }
+
+  createOrUpdateOrderEntity() {
+    this.order = {
+      products: []
+    };
+    this.productsOrder?.forEach((product) => {
+      const { id, name, description, thumbnail, unitPrice } = product;
+      this.order.products[id] = {
+        id,
+        name,
+        description,
+        thumbnail,
+        quantity: (this.order.products[id]?.quantity | 0) + 1,
+        unitPrice,
+        totalPrice: (this.order.products[id]?.totalPrice | 0) + unitPrice
+      };
+    });
+    this.order.products = this.order.products.filter((e) => Boolean(e));
+  }
+
+  calculateTotalAmount() {
+    this.totalAmount = this.order.products?.reduce((total, product) => {
+      return total + product.totalPrice;
+    }, 0);
+  }
+
+  changeProductsFromOrder(product, action) {
+    this.order.products = this.order.products.map((p) => {
+      if (p.id === product.id) {
+        return {
+          ...p,
+          quantity: action === "delete" ? p.quantity - 1 : p.quantity + 1,
+          totalPrice:
+            action === "delete"
+              ? p.totalPrice - p.unitPrice
+              : p.totalPrice + p.unitPrice
+        };
+      }
+      return p;
+    });
+    this.storageService.set("order", this.order);
+    this.calculateTotalAmount();
   }
 }
