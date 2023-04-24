@@ -16,6 +16,7 @@ $RECYCLE.BIN/
 *.log
 log.txt
 npm-debug.log*
+.env
 
 /qm-fe-app/.idea
 /qm-fe-app/.angular
@@ -30,3 +31,5 @@ npm-debug.log*
 /qm-fe-app/platforms
 /qm-fe-app/plugins
 /qm-fe-app/www
+/qm-be/node_modules
+/qm-be/dist
