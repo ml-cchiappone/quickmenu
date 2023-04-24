@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
+import router from "./api/infraestructure/routes";
 // import { Sequelize } from 'sequelize-typescript';
 // import jwt from 'jsonwebtoken';
 
-const app = express();
+const api = express();
 const port = 8080;
 
 // const sequelize = new Sequelize({
@@ -14,11 +15,10 @@ const port = 8080;
 //   modelPaths: [__dirname + '/models'],
 // });
 
-app.use(bodyParser.json());
+api.use(bodyParser.json());
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
+api.use("/", router);
+
 
 // app.post('/login', (req: Request, res: Response) => {
 //   const { username, password } = req.body;
@@ -43,7 +43,7 @@ app.get("/", (req: Request, res: Response) => {
 // });
 
 // sequelize.sync().then(() => {
-app.listen(port, () => {
+api.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
 // });
