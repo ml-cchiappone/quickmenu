@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import router from "./api/infraestructure/routes";
+import sequelize from "./api/infraestructure/persistence/mysql.config";
 // import { Sequelize } from 'sequelize-typescript';
 // import jwt from 'jsonwebtoken';
 
@@ -18,7 +19,6 @@ const port = 8080;
 api.use(bodyParser.json());
 
 api.use("/", router);
-
 
 // app.post('/login', (req: Request, res: Response) => {
 //   const { username, password } = req.body;
@@ -41,9 +41,8 @@ api.use("/", router);
 //     res.status(401).json({ message: 'Invalid token' });
 //   }
 // });
-
-// sequelize.sync().then(() => {
-api.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
+sequelize.sync().then(() => {
+  api.listen(port, () => {
+    console.log(`App listening at http://localhost:${port}`);
+  });
 });
-// });
