@@ -1,11 +1,9 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+import getAll from "../../../../interface/restaurants/getAll";
+import get from "../../../../interface/restaurants/get";
 const router = Router();
 
-router.get("/restaurants", (req: Request, res: Response) => {
-  res.send("Hello restaurants!");
-});
-router.get("/restaurants/:restaurantId", (req: Request, res: Response) => {
-  res.send(`Hello ${req.params.restaurantId}`);
-});
+router.get("/restaurants", getAll);
+router.get("/restaurants/:restaurantId", get);
 
 export default router;

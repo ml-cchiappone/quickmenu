@@ -16,6 +16,11 @@ const Restaurant = sequelize.define(
       allowNull: false,
       primaryKey: true
     },
+    string_id: {
+      type: DataTypes.STRING(60),
+      allowNull: false,
+      primaryKey: true
+    },
     name: {
       type: DataTypes.STRING(60),
       allowNull: false
@@ -78,7 +83,7 @@ const Restaurant = sequelize.define(
         name: "PRIMARY",
         unique: true,
         using: "BTREE",
-        fields: [{ name: "id" }]
+        fields: [{ name: "id" }, { name: "string_id" }]
       },
       {
         name: "fk_restaurant_user_idx",
