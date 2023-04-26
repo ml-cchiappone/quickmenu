@@ -9,6 +9,7 @@ class RestaurantsRepository {
 
   get(restaurantId: string) {
     return Restaurant.findOne({
+      raw: true,
       where: {
         string_id: restaurantId
       }
