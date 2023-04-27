@@ -43,15 +43,15 @@ export class OrderPage implements OnInit {
       products: []
     };
     this.productsOrder?.forEach((product) => {
-      const { id, name, description, thumbnail, unitPrice } = product;
+      const { id, name, description, thumbnail, price } = product;
       this.order.products[id] = {
         id,
         name,
         description,
         thumbnail,
         quantity: (this.order.products[id]?.quantity | 0) + 1,
-        unitPrice,
-        totalPrice: (this.order.products[id]?.totalPrice | 0) + unitPrice
+        price,
+        totalPrice: (this.order.products[id]?.totalPrice | 0) + parseInt(price)
       };
     });
     this.order.products = this.order.products.filter((e) => Boolean(e));
@@ -71,8 +71,8 @@ export class OrderPage implements OnInit {
           quantity: action === "delete" ? p.quantity - 1 : p.quantity + 1,
           totalPrice:
             action === "delete"
-              ? p.totalPrice - p.unitPrice
-              : p.totalPrice + p.unitPrice
+              ? p.totalPrice - parseInt(p.price)
+              : p.totalPrice + parseInt(p.price)
         };
       }
       return p;

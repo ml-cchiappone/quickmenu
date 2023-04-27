@@ -14,7 +14,7 @@
         </ion-card-header>
         <ion-card-content>
           <ion-list>
-            <ion-item *ngFor="let restaurant of restaurants | async"  [routerLink]="restaurant.redirectTo">
+            <ion-item *ngFor="let restaurant of restaurants"  routerLink= "/restaurant/{{restaurant?.string_id}}">
               <ion-avatar slot="start">
                 <img src="../../../assets/images/default_image.png" />
               </ion-avatar>
