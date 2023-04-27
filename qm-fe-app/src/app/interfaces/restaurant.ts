@@ -20,7 +20,7 @@ export interface Product {
   name: string;
   description: string;
   thumbnail: string;
-  unitPrice: number;
+  price: string;
   quantity?: number;
   totalPrice?: number;
 }

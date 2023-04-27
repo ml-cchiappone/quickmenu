@@ -20,12 +20,12 @@
       <ion-label>{{category.name}}</ion-label>
     </ion-list-header>
     <ion-item *ngFor="let product of category.products"> 
+      <!-- <img [src]="product.thumbnail" class="profile-user-img img-fluid img-circle"/> -->
       <ion-icon [name]="product.thumbnail" slot="start" color="medium"></ion-icon>
       <ion-label>
         <h3>{{product.name}}</h3>
         <p>{{product.description}}</p>
-        <!-- TODO: formatear monto -->
-        <p>$ {{product.unitPrice}}</p> 
+        <p>$ {{product.price}}</p> 
       </ion-label>
       <ion-button shape="circle" (click)="addProductInOrder(product)">
         <ion-icon slot="icon-only" name="add-outline"></ion-icon>
