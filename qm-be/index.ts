@@ -8,15 +8,13 @@ import sequelize from "./api/infraestructure/persistence/mysql.config";
 const api = express();
 const port = 8080;
 
-// const sequelize = new Sequelize({
-//   database: 'mydatabase',
-//   dialect: 'mysql',
-//   username: 'myuser',
-//   password: 'mypassword',
-//   modelPaths: [__dirname + '/models'],
-// });
-
 api.use(bodyParser.json());
+
+api.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 api.use("/", router);
 
