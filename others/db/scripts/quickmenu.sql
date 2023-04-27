@@ -33,7 +33,7 @@ CREATE TABLE `category` (
   PRIMARY KEY (`id`),
   KEY `fk_category_restaurant1_idx` (`restaurant_id`),
   CONSTRAINT `fk_category_restaurant1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Hamburguesas',NULL,0,1),(2,'Pizzas',NULL,0,1),(3,'Pastas',NULL,0,1);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +58,7 @@ CREATE TABLE `country` (
   `name` varchar(60) NOT NULL,
   `country_code` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,6 +67,7 @@ CREATE TABLE `country` (
 
 LOCK TABLES `country` WRITE;
 /*!40000 ALTER TABLE `country` DISABLE KEYS */;
+INSERT INTO `country` VALUES (1,'Argentina','AR');
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +200,7 @@ CREATE TABLE `product` (
   KEY `fk_product_restaurant1_idx` (`restaurant_id`),
   CONSTRAINT `fk_product_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
   CONSTRAINT `fk_product_restaurant1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,6 +209,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,'Hamburguesa Completa',NULL,1800.00,NULL,0,1,1),(2,'Hamburguesa Americana',NULL,1950.00,NULL,0,1,1),(3,'Pizza Clásica',NULL,1800.00,NULL,0,2,1),(4,'Pizza 4 Quesos',NULL,1900.00,NULL,0,2,1),(5,'Pizza Roquefort',NULL,2000.00,NULL,0,2,1),(6,'Pizza Peperoni',NULL,2100.00,NULL,0,2,1),(7,'Pizza Fugazza',NULL,2200.00,NULL,0,2,1),(8,'Pizza Fugazzeta',NULL,2300.00,NULL,0,2,1),(9,'Pasta Noquis',NULL,2500.00,NULL,0,3,1),(10,'Pasta Panzoti',NULL,2600.00,NULL,0,3,1),(11,'Pasta Sorrentinos',NULL,2400.00,NULL,0,3,1);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,6 +249,7 @@ DROP TABLE IF EXISTS `restaurant`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `restaurant` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `string_id` varchar(60) NOT NULL,
   `name` varchar(60) NOT NULL,
   `address` varchar(150) DEFAULT NULL,
   `phone_number` varchar(45) DEFAULT NULL,
@@ -257,12 +261,12 @@ CREATE TABLE `restaurant` (
   `country_id` int unsigned NOT NULL,
   `currency_symbol` varchar(8) DEFAULT '$',
   `deleted` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`,`string_id`),
   KEY `fk_restaurant_user_idx` (`user_id`),
   KEY `fk_restaurant_country1_idx` (`country_id`),
   CONSTRAINT `fk_restaurant_country1` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`),
   CONSTRAINT `fk_restaurant_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +275,35 @@ CREATE TABLE `restaurant` (
 
 LOCK TABLES `restaurant` WRITE;
 /*!40000 ALTER TABLE `restaurant` DISABLE KEYS */;
+INSERT INTO `restaurant` VALUES (1,'rufino','Rufino','Av siempreviva 1234','2613034926',NULL,NULL,NULL,NULL,1,1,'$',0),(2,'hipolito','Hipólito','Av San Martin 477','2614202017',NULL,NULL,NULL,NULL,1,1,'$',0);
 /*!40000 ALTER TABLE `restaurant` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `table`
+--
+
+DROP TABLE IF EXISTS `table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `table` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(60) NOT NULL,
+  `deleted` tinyint(1) NOT NULL,
+  `restaurant_id` int unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_table_restaurant1_idx` (`restaurant_id`) USING BTREE,
+  CONSTRAINT `table_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `table`
+--
+
+LOCK TABLES `table` WRITE;
+/*!40000 ALTER TABLE `table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `table` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -317,7 +349,7 @@ CREATE TABLE `user` (
   `date_created` datetime NOT NULL,
   `date_modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -326,16 +358,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'cristianchiappone@gmail.com','1234',0,NULL,'2020-01-01 10:10:01','2020-01-01 10:10:01');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'quickmenu'
---
-
---
--- Dumping routines for database 'quickmenu'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -346,4 +371,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-22 11:00:05
+-- Dump completed on 2023-04-26  8:32:43
