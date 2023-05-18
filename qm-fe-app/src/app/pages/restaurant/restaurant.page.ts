@@ -32,9 +32,7 @@ export class RestaurantPage implements OnInit {
     # con el id obtener productos 
     */
     this.restaurantId = this.route.snapshot.params.id; // TODO: Validar parámetro
-
-    console.log(this.restaurantId);
-    this.getRestaurantCategoriesAndProducts();
+    await this.getRestaurantCategoriesAndProducts();
     await this.getProductFromStorage();
     this.calculateTotalAmount();
   }
@@ -51,6 +49,7 @@ export class RestaurantPage implements OnInit {
           (resp) => {
             if (resp) {
               this.categories = resp;
+              this.setRestaurantToStorage();
             } else {
               // TODO: Si la respuesta no es valida, navegar a página de error
             }
@@ -81,5 +80,14 @@ export class RestaurantPage implements OnInit {
     this.totalAmount = this.productsOrder?.reduce((total, product) => {
       return total + parseInt(product.price);
     }, 0);
+  }
+
+  setRestaurantToStorage() {
+    if (this.categories.length) {
+      this.storageService.set(
+        "restaurant_id",
+        this.categories[0].restaurant_id
+      );
+    }
   }
 }

@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button menu="first" color="primary"></ion-menu-button>
+        </ion-buttons>
+        <ion-title color="primary">Pedido #{{order?.id}} </ion-title>
+    </ion-toolbar>
+</ion-header>
+  <ion-content>
+    <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{order?.restaurants?.name}} - {{order?.tables?.description}}</ion-card-title>
+          <ion-card-subtitle>Estado del pedido: {{order?.order_status?.status}}</ion-card-subtitle>
+          <!-- TODO:! Implementar https://github.com/RbkGh/NgFluentOrderTracker -->
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+              <ion-item *ngFor="let order_product of order?.order_products"> 
+            <ion-icon [name]="order_product?.products?.thumbnail" slot="start" color="medium"></ion-icon>
+            <ion-label>
+              <h3>{{order_product?.products?.name}}</h3>
+              <p>{{order_product?.products?.description}}</p>
+              <p>$ {{order_product?.products?.price}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        </ion-card-content>
+      </ion-card>
+  </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title size="small">Total</ion-title>
+      <ion-title size="small" slot="end">$ {{totalAmount}}</ion-title>
+    </ion-toolbar>
+  </ion-footer>
+  

@@ -17,6 +17,7 @@ export class OrderPage implements OnInit {
   };
   productsOrder: Product[];
   totalAmount: number;
+  restaurantId: number;
   constructor(
     private orderService: OrderService,
     private storageService: StorageService,
@@ -29,6 +30,7 @@ export class OrderPage implements OnInit {
     await this.getOrder();
     this.createOrUpdateOrderEntity();
     this.calculateTotalAmount();
+    this.restaurantId = await this.storageService.get("restaurant_id");
   }
 
   async getOrder() {
@@ -102,5 +104,44 @@ export class OrderPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  createOrder() {
+    const productsOrderEntity = this.order.products
+      .map((product) => {
+        if (product.quantity > 0) {
+          return {
+            product_id: product.id
+          };
+        }
+      })
+      .filter((p) => p);
+    try {
+      this.orderService
+        .setOrder({
+          order: {
+            restaurant_id: this.restaurantId,
+            table_id: 1
+          },
+          products_order: productsOrderEntity
+        })
+        .subscribe(
+          (resp) => {
+            if (resp) {
+              resp;
+              this.navController.navigateForward(`/order/${resp.id}/status`);
+              this.storageService.clear();
+            } else {
+              // TODO: Si la respuesta no es valida, navegar a página de error
+            }
+          },
+          (err) => {
+            console.log(err);
+            // TODO: Si el servicio falla, navegar a pagína de error
+          }
+        );
+    } catch (error) {
+      // TODO: manejar el error
+    }
   }
 }
