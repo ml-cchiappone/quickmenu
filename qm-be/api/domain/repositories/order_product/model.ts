@@ -52,6 +52,6 @@ const OrderProduct = sequelize.define(
   }
 );
 
-// OrderProduct.belongsTo(Product, { as: "product", foreignKey: "product_id" });
+OrderProduct.belongsTo(Product, { as: "products", foreignKey: "product_id" });
 
 export default OrderProduct;

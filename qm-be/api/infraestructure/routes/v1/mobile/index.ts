@@ -6,6 +6,8 @@ import {
   getAllCategoriesAndProducts
 } from "../../../../interface/categories/getAll";
 import getCategory from "../../../../interface/categories/get";
+import { createOrder } from "../../../../interface/orders/post";
+import getOrder from "../../../../interface/orders/get";
 
 const router = Router();
 
@@ -20,6 +22,8 @@ router.get(
 router.get("/restaurants/:restaurantId/categories/:categoryId", getCategory);
 
 // Orders
-router.post("/orders", getAllRestaurants);
+router.get("/orders", getOrder);
+router.post("/orders", createOrder);
+router.get("/orders/:orderId", getOrder);
 
 export default router;

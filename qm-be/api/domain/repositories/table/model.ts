@@ -49,6 +49,6 @@ const Table = sequelize.define(
 );
 
 // Table.belongsTo(Restaurant, { as: "restaurant", foreignKey: "restaurant_id" });
-// Table.hasMany(Order, { as: "orders", foreignKey: "tables_id" });
+// Table.hasMany(Order, { as: "orders", foreignKey: "table_id" });
 
 export default Table;
