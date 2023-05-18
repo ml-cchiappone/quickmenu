@@ -23,17 +23,17 @@ const Order = sequelize.define(
         key: "id"
       }
     },
-    tables_id: {
+    table_id: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       references: {
-        model: "tables",
+        model: "table",
         key: "id"
       }
     },
     order_status_id: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "order_status",
         key: "id"
@@ -41,7 +41,7 @@ const Order = sequelize.define(
     },
     order_payment_status_id: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "order_payment_status",
         key: "id"
@@ -64,9 +64,9 @@ const Order = sequelize.define(
         fields: [{ name: "restaurant_id" }]
       },
       {
-        name: "fk_order_tables1_idx",
+        name: "fk_order_table1_idx",
         using: "BTREE",
-        fields: [{ name: "tables_id" }]
+        fields: [{ name: "table_id" }]
       },
       {
         name: "fk_order_order_status1_idx",
@@ -91,7 +91,7 @@ Order.belongsTo(OrderStatus, {
   as: "order_status",
   foreignKey: "order_status_id"
 });
-// Order.belongsTo(Restaurant, { as: "restaurant", foreignKey: "restaurant_id" });
-Order.belongsTo(Table, { as: "table", foreignKey: "tables_id" });
+Order.belongsTo(Restaurant, { as: "restaurants", foreignKey: "restaurant_id" });
+Order.belongsTo(Table, { as: "tables", foreignKey: "table_id" });
 
 export default Order;
