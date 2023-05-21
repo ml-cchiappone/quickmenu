@@ -10,8 +10,12 @@ import { createOrder } from "../../../../interface/orders/post";
 import getOrder from "../../../../interface/orders/get";
 
 import getUser from "../../../../interface/users/get";
+import auth from "../../../../interface/users/auth";
 
 const router = Router();
+
+// Auth
+router.post("/auth", auth);
 
 // Restaurants
 router.get("/restaurants", getAllRestaurants);

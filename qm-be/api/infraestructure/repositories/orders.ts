@@ -11,7 +11,7 @@ class OrdersRepository {
     const transaction = await sequelize.transaction();
     const { order, products_order } = data;
     try {
-      // TODO: tipar
+      // TODO: tipar y llevar al UC
       const createdOrder = await Order.create(order, {
         transaction
       });
