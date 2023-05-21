@@ -9,6 +9,8 @@ import getCategory from "../../../../interface/categories/get";
 import { createOrder } from "../../../../interface/orders/post";
 import getOrder from "../../../../interface/orders/get";
 
+import getUser from "../../../../interface/users/get";
+
 const router = Router();
 
 // Restaurants
@@ -25,5 +27,8 @@ router.get("/restaurants/:restaurantId/categories/:categoryId", getCategory);
 router.get("/orders", getOrder);
 router.post("/orders", createOrder);
 router.get("/orders/:orderId", getOrder);
+
+// Users
+router.get("/users/:userId", getUser);
 
 export default router;

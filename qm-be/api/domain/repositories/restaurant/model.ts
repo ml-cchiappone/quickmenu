@@ -5,7 +5,7 @@ import Country from "../country/model";
 import Order from "../order/model";
 import Product from "../product/model";
 import Table from "../table/model";
-import User from "../user/mode";
+import User from "../user/model";
 
 const Restaurant = sequelize.define(
   "restaurant",
@@ -104,6 +104,6 @@ Restaurant.hasMany(Category, { as: "categories", foreignKey: "restaurant_id" });
 // Restaurant.hasMany(Order, { as: "orders", foreignKey: "restaurant_id" });
 Restaurant.hasMany(Product, { as: "products", foreignKey: "restaurant_id" });
 Restaurant.hasMany(Table, { as: "tables", foreignKey: "restaurant_id" });
-Restaurant.belongsTo(User, { as: "user", foreignKey: "user_id" });
+// Restaurant.belongsTo(User, { as: "user", foreignKey: "user_id" });
 
 export default Restaurant;
