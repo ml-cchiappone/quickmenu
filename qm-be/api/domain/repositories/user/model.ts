@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../../infraestructure/persistence/mysql.config";
 import Restaurant from "../restaurant/model";
+import UserRol from "../user_rol/model";
 
 const User = sequelize.define(
   "user",
@@ -50,6 +51,7 @@ const User = sequelize.define(
   }
 );
 
-// User.hasMany(Restaurant, { as: "restaurants", foreignKey: "user_id" });
+User.hasMany(Restaurant, { as: "restaurants", foreignKey: "user_id" });
+User.hasMany(UserRol, { as: "user_rol", foreignKey: "user_id" });
 
 export default User;
