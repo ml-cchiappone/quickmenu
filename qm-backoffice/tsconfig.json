@@ -1,55 +1,17 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-      "baseUrl": "./src",
-      "outDir": "./dist/out-tsc",
-      "sourceMap": true,
-      "declaration": false,
-      "downlevelIteration": true,
-      "experimentalDecorators": true,
-      "module": "es2020",
-      "moduleResolution": "node",
-      "importHelpers": true,
-      "target": "ES2022",
-      "lib": [
-        "es2018",
-        "dom"
-      ],
-      "resolveJsonModule": true,
-      "esModuleInterop": true,
-      "paths": {
-        "path": [
-          "../node_modules/path-browserify"
-        ],
-        "os": [
-          "../node_modules/os-browserify/browser"
-        ],
-        "fs": [
-          "../node_modules/fs-web"
-        ],
-        "@components/*": [
-          "app/components/*"
-        ],
-        "@guards/*": [
-          "app/guards/*"
-        ],
-        "@modules/*": [
-          "app/modules/*"
-        ],
-        "@pages/*": [
-          "app/pages/*"
-        ],
-        "@services/*": [
-          "app/services/*"
-        ],
-        "@/*": [
-          "app/*"
-        ]
-      },
-      "useDefineForClassFields": false
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
     },
-    "angularCompilerOptions": {
-        "fullTemplateTypeCheck": true,
-        "strictInjectionParameters": true
+    {
+      "path": "./tsconfig.spec.json"
     }
+]
 }

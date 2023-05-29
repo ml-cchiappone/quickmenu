@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  dashb:
+    container_name: dashb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:80' 

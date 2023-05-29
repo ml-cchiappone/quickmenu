@@ -1,0 +1,70 @@
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="row">
+        <div class="col-12" style="text-align: center; padding-bottom: 20px;">
+          <!-- <img src="assets/img/logo-" alt="AdminLTE Logo" class="brand-image"> -->
+        </div>
+      </div>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <div class="row">
+          <div class="col-12" style="text-align: center;">
+            <h3><b>Quickmenu</b></h3>
+          </div>
+        </div>
+        <p class="login-box-msg">Inicia sesión para comenzar</p>
+        <p class="login-box-msg text-red" *ngIf="alertError">Email/Contraseña incorrectos</p>
+        <p class="login-box-msg text-red" *ngIf="alertErrorServer">Algo salio mal, por favor vuelva a
+          intentar mas tarde!</p>
+        <form ngNativeValidate [formGroup]="form" (ngSubmit)="login()">
+          <div class="input-group mb-3">
+            <input formControlName="email" required name="email" type="email" class="form-control"
+              placeholder="Email">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input formControlName="password" required name="password" type="password" class="form-control"
+              placeholder="Contraseña">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <!--
+                Queda comentado porque se puede utilizar mas adelante para cumplir con la 
+                función de recuérdame y que no haya que volver a iniciar sesión 
+                <div class="icheck-primary">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">
+                        Recuérdame
+                    </label>
+                </div>
+            -->
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="spinner"><i
+                  class="fas fa-spinner fa-spin" *ngIf="spinner"></i><span *ngIf="buttonLogin">Ingresar</span></button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+        <p class="mb-1 mt-3">
+          <a routerLink="/recover" routerLinkActive="active">Olvide mi contraseña</a>
+        </p>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+</body>

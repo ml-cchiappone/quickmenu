@@ -1,0 +1,25 @@
+<h1 mat-dialog-title class="{{ titleColor }}">{{ title }}</h1>
+<mat-dialog-content class="mat-typography">
+    <form class="form-horizontal" [formGroup]="formGroup">
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <h3>{{ subTitle }}</h3>
+            </div>
+        </div>
+        <ng-container *ngFor="let item of data.checkboxList">
+            <div class="form-group row">
+                <div class="col-sm-2"><i class="{{ item.icon }} fa-2x"></i></div>
+                <label for="inputName" class="col-sm-4 col-form-label">{{ item.name }}</label>
+                <div class="col-sm-6">
+                    <mat-slide-toggle formControlName="{{ item.description }}">{{ formGroup.get(item.description).value  ? 'Activado' : 'Desactivado' }}</mat-slide-toggle>
+                </div>
+            </div>
+            <hr>
+        </ng-container>
+    </form>
+</mat-dialog-content>
+<br>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="denyBtnValue" class="btn btn-{{ firstBtnColor }} btn-sm" style="margin-right: 10px;">{{ firstBtnText }}</button>
+    <button mat-button [mat-dialog-close]="this.formGroup.value" cdkFocusInitial class="btn btn-{{ secondBtnColor }} btn-sm">{{ secondBtnText }}</button>
+</mat-dialog-actions>

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title class="{{ titleColor }}">{{ title }}</h1>
+<mat-dialog-content class="mat-typography">
+    <h3>{{ subTitle }}</h3>
+    <div [innerHtml]="content"></div>
+</mat-dialog-content>
+<br>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="denyBtnValue" class="btn btn-{{ firstBtnColor }} btn-sm" style="margin-right: 10px;">{{ firstBtnText }}</button>
+    <button mat-button [mat-dialog-close]="confirmBtnValue" cdkFocusInitial class="btn btn-{{ secondBtnColor }} btn-sm">{{ secondBtnText }}</button>
+</mat-dialog-actions>

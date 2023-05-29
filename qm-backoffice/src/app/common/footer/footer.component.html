@@ -1,0 +1,12 @@
+<footer class="main-footer">
+    <strong>Copyright &copy; {{ anio }}. <!--<a href="http://adminlte.io">AdminLTE.io</a>--></strong>
+    Todos los derechos reservados.
+    <div class="pl-2 float-right d-none d-sm-inline-block">
+        <b>Servicio alertas: </b>
+        <span *ngIf="socketAlertService.socketStatus" class="text-success">Online</span>
+        <span *ngIf="!socketAlertService.socketStatus" class="text-danger">Offline</span>
+    </div>
+    <div class="float-right d-none d-sm-inline-block">
+        <b>Versión</b> 1.0.0
+    </div>
+</footer>

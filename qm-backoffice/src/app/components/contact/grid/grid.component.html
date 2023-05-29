@@ -1,0 +1,40 @@
+<!-- card content -->
+<div class="card">
+    <!-- card-header -->
+    <div class="card-header">
+        <h5 class="m-0 mb-0 fs-n fw-n">Agenda de contactos
+            <button class="btn btn-sm btn-success float-right" style="margin-right: 10px;" (click)="openDialogContact('create', null)"><i
+                    class="fas fa-clipboard"></i> Crear contacto</button>
+        </h5>
+    </div>
+    <!-- /.card-header -->
+    <!-- card-body -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12" id="card-body-contact">
+                <div [ngClass]="{'opacity-grid': gridOpacity}">
+                    <angular-slickgrid gridId="{{ gridId }}" (onGridStateChanged)="gridStateChanged($event)"
+                        [columnDefinitions]="columnDefinitions" [gridOptions]="gridOptions" [dataset]="dataset | async">
+                    </angular-slickgrid>
+                    <div class="slick-empty-data-warning left alert-grid" *ngIf="showStringEmptyData">No hay información
+                        para mostrar</div>
+                    <div class="slick-empty-data-warning left alert-grid-error" *ngIf="showStringError">Algo malo
+                        sucedio: Por favor, inténtelo de nuevo más tarde.</div>
+                </div>
+                <div class="spinner-grid" *ngIf="showGridSpinner">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.card-body -->
+    <!-- card-footer -->
+    <div class="card-footer bg-transparent" style="border-top: none !important">
+        <ngb-pagination [collectionSize]='pagination' [(page)]="page" [maxSize]="3" [rotate]="true"
+            [boundaryLinks]="true" (pageChange)="loadPage($event)" [disabled]='paginationDisabled'></ngb-pagination>
+    </div>
+    <!-- /.card-footer -->
+</div>
+<!-- /.card content -->

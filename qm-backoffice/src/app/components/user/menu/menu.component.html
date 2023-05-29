@@ -1,0 +1,320 @@
+<div class="row">
+  <div class="col-md-3">
+    <!-- Profile Image -->
+    <div class="card card-primary card-outline">
+      <div class="card-body box-profile">
+        <div class="text-center">
+          <img
+            [src]="'assets/img/no_user.jpg'"
+            class="profile-user-img img-fluid img-circle"
+            alt="User profile picture"
+          />
+        </div>
+        <!-- <h3 class="profile-username text-center">{{ user?.first_name }}</h3> -->
+        <!-- <h3 class="profile-username text-center">{{ user?.last_name }}</h3> -->
+        <hr />
+        <strong> <i class="fas fa-envelope"></i> Email </strong>
+        <p class="text-muted">{{ user?.email }}</p>
+
+        <hr />
+        <strong> <i class="fas fa-user-tag"></i> Fec. Alta </strong>
+        <p class="text-muted">{{ user?.date_created | date: 'dd/MM/yyy' }}</p>
+
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <div class="col-md-9">
+    <div class="card">
+      <div class="card-header p-2">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link active" href="#roles" data-toggle="tab">Roles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#password" data-toggle="tab"
+              >Contraseña</a
+            >
+          </li>
+          <!--<li class="nav-item"><a class="nav-link" href="#example" data-toggle="tab">ejemplo</a></li>-->
+        </ul>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <div class="tab-content">
+          <div class="tab-pane active" id="roles">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="products-list product-list-in-card pl-2 pr-2">
+                  <ng-container
+                    *ngIf="user?.user_rol.length; else elseTemplateRol"
+                  >
+                    <li
+                      class="item"
+                      *ngFor="let item of user?.user_rol; index as i"
+                    >
+                      <div
+                        style="float: left; padding-left: 5px; padding-top: 5px"
+                      >
+                        <i
+                          class="fas fa-user-cog fa-2x"
+                          *ngIf="item.rol.id === 1"
+                        ></i>
+                        <i
+                          class="fas fa-clipboard-list fa-2x"
+                          *ngIf="item.rol.id === 2"
+                          style="padding-left: 2px"
+                        ></i>
+                        <i
+                          class="fas fa-user-md fa-2x"
+                          *ngIf="item.rol.id === 3"
+                        ></i>
+                        <i
+                          class="fas fa-book fa-2x"
+                          *ngIf="item.rol.id === 4"
+                        ></i>
+                        <i
+                          class="far fa-calendar fa-2x"
+                          *ngIf="item.rol.id === 5"
+                        ></i>
+                      </div>
+                      <div class="product-info">
+                        <span class="product-title">
+                          {{ item.rol.name }}
+                        </span>
+                        <span class="product-description"> {{ item.rol.description }} </span>
+                      </div>
+                    </li>
+                    <!-- /.item -->
+                  </ng-container>
+                  <ng-template #elseTemplateRol>
+                    <li class="item">
+                      <div
+                        style="float: left; padding-left: 5px; padding-top: 5px"
+                      >
+                        <i class="fas fa-user-slash fa-2x"></i>
+                      </div>
+                      <div class="product-info">
+                        <span class="product-title"> Sin roles Asignados </span>
+                        <span class="product-description"> Descripcion </span>
+                      </div>
+                    </li>
+                  </ng-template>
+                </ul>
+                <ng-container *ngIf="true">
+                  <hr />
+                  <button
+                    *ngIf="rolAdminEnabled"
+                    class="btn btn-success float-right logout-btn-color"
+                    (click)="manageRoles(user?.user_rol)"
+                  >
+                    <i class="fas fa-edit"></i> Editar roles
+                  </button>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="password">
+            <form
+              class="form-horizontal"
+              [formGroup]="formPassword"
+              (ngSubmit)="submitFormPassword()"
+            >
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <h4>Cambiar contraseña</h4>
+                  <span
+                    style="font-size: 14px; color: red"
+                    [hidden]="!textPassword"
+                    >* Para cambiar la contraseña ingrese desde su perfil.</span
+                  >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputName" class="col-sm-12 col-form-label"
+                  >Contraseña Actual
+                  <span
+                    class="badge badge-danger"
+                    *ngIf="validateAlert(formPassword.get('password'))"
+                    >campo requerido</span
+                  ></label
+                >
+                <div class="col-sm-12">
+                  <input
+                    type="password"
+                    class="form-control {{
+                      validateInput(formPassword.get('password'))
+                    }}"
+                    [formControlName]="'password'"
+                    id="password"
+                    placeholder=""
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail" class="col-sm-12 col-form-label"
+                  >Contraseña Nueva
+                  <span
+                    class="badge badge-danger"
+                    *ngIf="validateAlert(formPassword.get('newPassword'))"
+                    >campo requerido</span
+                  ></label
+                >
+                <div class="col-sm-12">
+                  <input
+                    type="password"
+                    class="form-control {{
+                      validateInput(formPassword.get('newPassword'))
+                    }}"
+                    [formControlName]="'newPassword'"
+                    placeholder=""
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputSkills" class="col-sm-12 col-form-label"
+                  >Confirmar Contraseña
+                  <span
+                    class="badge badge-danger"
+                    *ngIf="validateAlert(formPassword.get('confirmPassword'))"
+                    >campo requerido</span
+                  ></label
+                >
+                <div class="col-sm-12">
+                  <input
+                    type="password"
+                    class="form-control {{
+                      validateInput(formPassword.get('confirmPassword'))
+                    }}"
+                    [formControlName]="'confirmPassword'"
+                    placeholder=""
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <button type="submit" class="btn btn-danger">Guardar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="tab-pane" id="example">
+            <!-- The timeline -->
+            <div class="timeline timeline-inverse">
+              <!-- timeline time label -->
+              <div class="time-label">
+                <span class="bg-danger"> 10 Feb. 2014 </span>
+              </div>
+              <!-- /.timeline-label -->
+              <!-- timeline item -->
+              <div>
+                <i class="fas fa-envelope bg-primary"></i>
+
+                <div class="timeline-item">
+                  <span class="time"><i class="far fa-clock"></i> 12:05</span>
+
+                  <h3 class="timeline-header">
+                    <a href="#">Support Team</a> sent you an email
+                  </h3>
+
+                  <div class="timeline-body">
+                    Etsy doostang zoodles disqus groupon greplin oooj voxy
+                    zoodles, weebly ning heekya handango imeem plugg dopplr
+                    jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                    Babblely odeo kaboodle quora plaxo ideeli hulu weebly
+                    balihoo...
+                  </div>
+                  <div class="timeline-footer">
+                    <a href="#" class="btn btn-primary btn-sm">Read more</a>
+                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END timeline item -->
+              <!-- timeline item -->
+              <div>
+                <i class="fas fa-user bg-info"></i>
+
+                <div class="timeline-item">
+                  <span class="time"
+                    ><i class="far fa-clock"></i> 5 mins ago</span
+                  >
+
+                  <h3 class="timeline-header border-0">
+                    <a href="#">Sarah Young</a> accepted your friend request
+                  </h3>
+                </div>
+              </div>
+              <!-- END timeline item -->
+              <!-- timeline item -->
+              <div>
+                <i class="fas fa-comments bg-warning"></i>
+
+                <div class="timeline-item">
+                  <span class="time"
+                    ><i class="far fa-clock"></i> 27 mins ago</span
+                  >
+
+                  <h3 class="timeline-header">
+                    <a href="#">Jay White</a> commented on your post
+                  </h3>
+
+                  <div class="timeline-body">
+                    Take me to your leader! Switzerland is small and neutral! We
+                    are more like Germany, ambitious and misunderstood!
+                  </div>
+                  <div class="timeline-footer">
+                    <a href="#" class="btn btn-warning btn-flat btn-sm"
+                      >View comment</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- END timeline item -->
+              <!-- timeline time label -->
+              <div class="time-label">
+                <span class="bg-success"> 3 Jan. 2014 </span>
+              </div>
+              <!-- /.timeline-label -->
+              <!-- timeline item -->
+              <div>
+                <i class="fas fa-camera bg-purple"></i>
+
+                <div class="timeline-item">
+                  <span class="time"
+                    ><i class="far fa-clock"></i> 2 days ago</span
+                  >
+
+                  <h3 class="timeline-header">
+                    <a href="#">Mina Lee</a> uploaded new photos
+                  </h3>
+
+                  <div class="timeline-body">
+                    <img src="https://placehold.it/150x100" alt="..." />
+                    <img src="https://placehold.it/150x100" alt="..." />
+                    <img src="https://placehold.it/150x100" alt="..." />
+                    <img src="https://placehold.it/150x100" alt="..." />
+                  </div>
+                </div>
+              </div>
+              <!-- END timeline item -->
+              <div>
+                <i class="far fa-clock bg-gray"></i>
+              </div>
+            </div>
+          </div>
+          <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+</div>

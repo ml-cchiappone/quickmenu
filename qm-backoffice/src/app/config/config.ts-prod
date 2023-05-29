@@ -1,0 +1,2 @@
+export const BACKEND_URL = 'http://34.122.122.181/';
+export const PAGINATION_LIMIT = 10;

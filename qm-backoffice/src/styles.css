@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cdk-overlay-container {
+    z-index: 1050 !important;
+}
+
+.dropdown-menu {
+    z-index: 1100 !important;
+}
+
+.ql-editor:focus {
+    border: 1px solid #80bdff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+.opacity-grid .slick-viewport{
+    opacity: 0.5 !important;
+}
+
+.custom-dialog-container .mat-dialog-container {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}

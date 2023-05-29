@@ -1,0 +1,13 @@
+::ng-deep snack-bar-container.notif-success {
+    color: #155724 !important;
+    background-color: #d4edda !important;
+    border-color: #c3e6cb !important;
+    text-align: center;
+}
+
+::ng-deep snack-bar-container.notif-danger {
+    color: #721c24 !important;
+    background-color: #f8d7da !important;
+    border-color: #f5c6cb !important;
+    text-align: center;
+}
