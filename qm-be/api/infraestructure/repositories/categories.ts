@@ -49,6 +49,29 @@ class CategoriesRepository {
       }
     });
   }
+
+  update(categoryId: number, data: any) {
+    return Category.update(data, {
+      where: {
+        id: categoryId
+      }
+    });
+  }
+
+  delete(categoryId: number) {
+    return Category.update(
+      { deleted: 1 },
+      {
+        where: {
+          id: categoryId
+        }
+      }
+    );
+  }
+
+  post(data: any) {
+    return Category.create(data);
+  }
 }
 
 export default CategoriesRepository;
