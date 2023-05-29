@@ -31,7 +31,7 @@ const Product = sequelize.define(
     },
     deleted: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: true
     },
     category_id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -74,7 +74,7 @@ const Product = sequelize.define(
   }
 );
 
-// Product.belongsTo(Category, { as: "category", foreignKey: "category_id" });
+Product.belongsTo(Category, { as: "categories", foreignKey: "category_id" });
 // Product.hasMany(OrderProduct, {
 //   as: "order_products",
 //   foreignKey: "product_id"
