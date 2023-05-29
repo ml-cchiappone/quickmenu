@@ -22,7 +22,6 @@ const User = sequelize.define(
     },
     deleted: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
     },
     last_connection: {
       type: DataTypes.DATE,
@@ -30,7 +29,6 @@ const User = sequelize.define(
     },
     date_created: {
       type: DataTypes.DATE,
-      allowNull: false
     },
     date_modified: {
       type: DataTypes.DATE,
