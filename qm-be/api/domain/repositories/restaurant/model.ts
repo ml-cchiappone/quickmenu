@@ -1,11 +1,9 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../../infraestructure/persistence/mysql.config";
 import Category from "../category/model";
-import Country from "../country/model";
-import Order from "../order/model";
 import Product from "../product/model";
 import Table from "../table/model";
-import User from "../user/model";
+import Province from "../province/model";
 
 const Restaurant = sequelize.define(
   "restaurant",
@@ -57,11 +55,11 @@ const Restaurant = sequelize.define(
         key: "id"
       }
     },
-    country_id: {
+    province_id: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       references: {
-        model: "country",
+        model: "province",
         key: "id"
       }
     },
@@ -72,7 +70,7 @@ const Restaurant = sequelize.define(
     },
     deleted: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: true
     }
   },
   {
@@ -91,19 +89,19 @@ const Restaurant = sequelize.define(
         fields: [{ name: "user_id" }]
       },
       {
-        name: "fk_restaurant_country1_idx",
+        name: "fk_restaurant_province_id1_idx",
         using: "BTREE",
-        fields: [{ name: "country_id" }]
+        fields: [{ name: "province_id" }]
       }
     ]
   }
 );
 
-Restaurant.belongsTo(Country, { as: "country", foreignKey: "country_id" });
+Restaurant.belongsTo(Province, { as: "province", foreignKey: "province_id" });
 Restaurant.hasMany(Category, { as: "categories", foreignKey: "restaurant_id" });
 // Restaurant.hasMany(Order, { as: "orders", foreignKey: "restaurant_id" });
 Restaurant.hasMany(Product, { as: "products", foreignKey: "restaurant_id" });
-Restaurant.hasMany(Table, { as: "tables", foreignKey: "restaurant_id" });
+// Restaurant.hasMany(Table, { as: "tables", foreignKey: "restaurant_id" });
 // Restaurant.belongsTo(User, { as: "user", foreignKey: "user_id" });
 
 export default Restaurant;
