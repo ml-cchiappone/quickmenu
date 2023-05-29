@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import OrderPost from "../../application/usecases/orders/post";
 
-export const createOrder = async (
+const createOrder = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -16,3 +16,5 @@ export const createOrder = async (
     console.log("🚀 ~ file: get.ts:9 ~ get ~ error:", error);
   }
 };
+
+export default  createOrder
