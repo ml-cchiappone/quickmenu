@@ -5,9 +5,7 @@ export default class CategoriesGetAll {
 
   async execute(restaurantId: number) {
     try {
-      const { rows } = await new CategoriesRepository().getAll(restaurantId);
-      
-      return rows;
+      return await new CategoriesRepository().getAll(restaurantId);
     } catch (error) {
       console.log(
         "🚀 ~ file: getAll.ts:11 ~ CategoriesGetAll ~ execute ~ error:",
