@@ -1,0 +1,25 @@
+.title-unsubscribe {
+    color: red;
+}
+
+.title-subscribe {
+    color: green;
+}
+
+.title-pause {
+    color: #ffc107;;
+}
+
+::ng-deep .maxWidthText {
+    max-width: 500px;
+}
+
+::ng-deep .img-dialog {
+    border-radius: 50% !important;
+    display: inline !important;
+    width: 5rem !important;
+}
+
+::ng-deep .mw-d {
+    max-width: 500px !important;
+}

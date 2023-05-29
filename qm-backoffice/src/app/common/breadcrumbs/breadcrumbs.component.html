@@ -1,0 +1,26 @@
+<div class="content-header p-2">
+  <div class="container-fluid">
+    <div class="row mb-0">
+      <div class="col-lg-12">
+        <ol
+          class="breadcrumb float-sm-right"
+          style="line-height: 1rem !important"
+        >
+          <li class="breadcrumb-item" *ngIf="breadcrumbs !== 'Inicio'"><a routerLink="/home">Inicio</a></li>
+          <li class="breadcrumb-item" *ngIf="!breadcrumbsChild && !breadcrumbChildOne">{{ breadcrumbs }}</li>
+          <li class="breadcrumb-item" *ngIf="breadcrumbsChild">
+              <a [routerLink]='urlBack'>
+                {{ breadcrumbsChild }}
+              </a>
+          </li>
+          <li class="breadcrumb-item" *ngIf="breadcrumbChildOne">
+            {{ breadcrumbChildOne }}
+          </li>
+          <li class="breadcrumb-item" *ngIf="breadcrumbChildTwo">
+            {{ breadcrumbChildTwo }}
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0 fs-n fw-n">Categorias</h5>
+            <div class="card-tools">
+              <span class="badge badge-info" style="font-size: 100%"
+                >{{ categoryCount }} en Total</span
+              >
+              <button
+                type="button"
+                class="btn btn-tool"
+                data-card-widget="collapse"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-striped table-valign-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngIf="categoryList.length !== 0; else elseCategoryTemplate">
+                    <tr *ngFor="let category of categoryList | slice:0:3; let i=index">
+                      <td>{{ category.name }}</td>
+                      <td>{{ category.description }}</td>
+                      <td class="text-center">
+                         <div style="padding: 0 5px;font-weight: bold;color: white;padding: 2px;"  [style.background]="category.deleted ? '#ef8c82' : '#63c563'"> {{ category.deleted ? 'De Baja' : 'Activo' }}</div>
+                      </td>
+                      <td class="text-center">
+                        <button
+                          class="btn btn-success btn-sm"
+                          style="line-height: 1rem"
+                          (click)="goToProductView(category.id)"
+                        >
+                          <i class="fas fa-search"></i></button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="categoryList.length >= 3">
+                      <td class="text-center" colspan="4">
+                        <button class="btn btn-info btn-block float-center" (click)="goToCategoryView()"><i
+                          class="fas fa-list"></i> Ver todas</button>
+                      </td>
+                    </tr>
+                  </ng-container>
+                  <ng-template #elseCategoryTemplate>
+                    <tr>
+                      <td class="text-center" colspan="4">
+                        -- Sin categorias creadas! --
+                      </td>
+                    </tr>
+                  </ng-template>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.table-responsive -->
+          </div>
+          <!-- /.card-body -->
+
+          <!-- /.card-footer -->
+        </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title mb-0 fs-n fw-n">Mesas</h5>
+              <div class="card-tools">
+                <span class="badge badge-info" style="font-size: 100%"
+                  >{{ tableCount }} en Total</span
+                >
+                <button
+                  type="button"
+                  class="btn btn-tool"
+                  data-card-widget="collapse"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-striped table-valign-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>Descripción</th>
+                      <th>Estado</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngIf="tableList.length !== 0; else elseTableTemplate">
+                      <tr *ngFor="let table of tableList | slice:0:3; let i=index">
+                        <td>{{ table.description }}</td>
+                        <td class="text-center">
+                           <div style="padding: 0 5px;font-weight: bold;color: white;padding: 2px;"  [style.background]="table.deleted ? '#ef8c82' : '#63c563'"> {{ table.deleted ? 'De Baja' : 'Activo' }}</div>
+                        </td>
+                        <td class="text-center">
+                          <button
+                            class="btn btn-success btn-sm"
+                            style="line-height: 1rem"
+                            (click)="goToTableView(table.id)"
+                          >
+                            <i class="fas fa-search"></i></button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="tableList.length >= 3">
+                        <td class="text-center" colspan="4">
+                          <button class="btn btn-info btn-block float-center" (click)="goToTableView()"><i
+                            class="fas fa-list"></i> Ver todas</button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                    <ng-template #elseTableTemplate>
+                      <tr>
+                        <td class="text-center" colspan="4">
+                          -- Sin mesas creadas! --
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.card-body -->
+  
+            <!-- /.card-footer -->
+          </div>
+          </div>
+        </div>

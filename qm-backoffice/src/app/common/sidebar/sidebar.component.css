@@ -1,0 +1,29 @@
+.fa-custom {
+    font-size: 1.4em;
+}
+
+.sidebar-left-light-primary {
+    background-color: #007bff;
+}
+
+.logo-font-color {
+    background-color: white;
+}
+
+.name-color {
+    color:white;
+}
+
+.sidebar-icon {
+    width: 25px;
+    text-align: center;
+}
+
+.sidebar-text {
+    padding-left: 10px;
+}
+
+[class*=sidebar-light-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-light-] .nav-treeview>.nav-item>.nav-link.active:hover {
+    background-color: #007bff40 !important;
+    color: black !important;
+}

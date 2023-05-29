@@ -1,0 +1,66 @@
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <div class="row">
+                <div class="col-12" style="text-align: center; padding-bottom: 20px;">
+                    <!-- <img src="assets/img/logo-" alt="AdminLTE Logo" class="brand-image"> -->
+                </div>
+            </div>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <div class="row" *ngIf="formView">
+                    <div class="col-12" style="text-align: center;">
+                        <h3><b>Cambiar contraseña</b></h3>
+                    </div>
+                </div>
+                <p class="login-box-msg" *ngIf="formView">Ingrese su nueva contraseña</p>
+                <p class="login-box-msg mt-2 text-green" *ngIf="alertSuccess">Tu contraseña ha sido
+                    modificada correctamente!
+                </p>
+                <p class="login-box-msg text-red" *ngIf="alertError">Las contraseñas nuevas no coinciden!
+                </p>
+                <p class="login-box-msg text-red" *ngIf="alertErrorServer">Algo salio mal, por favor vuelva a
+                    intentar mas tarde!
+                </p>
+                <form *ngIf="formView" ngNativeValidate [formGroup]="formPassword" (ngSubmit)="recoverPassword()">
+                    <div class="input-group mb-3">
+                        <input formControlName="newPassword" required name="password" type="password"
+                            class="form-control" placeholder="Contraseña Nueva">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input formControlName="confirmPassword" required name="password" type="password"
+                            class="form-control" placeholder="Confirmar Contraseña">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block" [disabled]="spinner"><i
+                                    class="fas fa-spinner fa-spin" *ngIf="spinner"></i><span
+                                    *ngIf="buttonSend">Enviar</span></button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <p class="mb-1 mt-3" *ngIf="!formView">
+                    <a routerLink="/login" routerLinkActive="active">Volver</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+</body>

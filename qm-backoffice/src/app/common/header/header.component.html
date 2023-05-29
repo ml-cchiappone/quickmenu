@@ -1,0 +1,102 @@
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-primary navbar-dark">
+  <!-- Left navbar links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link nav-link-color" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+    </li>
+  </ul>
+
+  <!-- SEARCH FORM
+    Queda comentado porque se puede utilizar mas adelante para crear un buscador general 
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  -->
+  <!-- Right navbar links -->
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="far fa-bell"></i>
+        <span class="badge badge-danger navbar-badge">{{ alertCount ? alertCount : 0}}</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="min-width:320px !important;">
+        <div *ngIf="listAlerts; else noAlerts">
+          <ng-container *ngFor="let alert of listAlerts; let i=index">
+            <div [ngClass]="{'alert-primary': !alert?.read}" role="alert">
+            <a (click)="updateAlert(alert)" class="dropdown-item alert-link pointer" *ngIf="i < 4">
+              <div class="media"> 
+                <img [src]='alert?.user_emit && alert?.user_emit.picture ? alert?.user_emit.picture : "assets/img/no_user.jpg"' alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                <div class="media-body">
+                  <h3 class="dropdown-item-title">
+                    {{ alert.title }}
+                  </h3>
+                  <p class="text-sm">{{ alert.message }}</p>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> {{ alert?.date_created | date:'dd/MM/yyy HH:mm' }}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </ng-container>
+        </div>
+        <ng-template #noAlerts>
+          <div class="dropdown-item">
+            <i class="pr-2 fas fa-inbox"></i> No hay alertas para mostrar.
+          </div>
+        </ng-template>
+        <div class="dropdown-divider"></div>
+        <a routerLink="/profile/alert" class="dropdown-item dropdown-footer">Ver todas las alertas</a>
+      </div>
+    </li>
+    <!-- Notifications Dropdown Menu
+      Queda comentado porque se puede utilizar mas adelante para poder ver las diferentes notificaciones y alertas del sistema.
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+    -->
+    <li class="nav-item dropdown user-menu">
+      <a href="#" class="nav-link dropdown-toggle nav-link-color" data-toggle="dropdown" aria-expanded="false">
+        <img [src]='"assets/img/no_user.jpg"' class="user-image img-circle elevation-2" alt="User Image">
+        <span class="d-none d-md-inline">{{user?.email}}</span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <!-- User image -->
+        <li class="user-header bg-primary">
+          
+          <img [src]='"assets/img/no_user.jpg"' class="img-circle elevation-2" alt="User Image">
+
+          <p>
+            {{user?.email}}
+            <small> Alta: {{user?.date_created | date}}</small>
+          </p>
+        </li>
+        <!-- Menu Footer-->
+        <li class="user-footer">
+          <a (click)="goToProfileMenu()" class="btn btn-success logout-btn-color">Perfil</a> 
+          <a (click)="userService.logout()" class="btn btn-danger float-right logout-btn-color">Cerrar sesión</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!-- /.navbar -->

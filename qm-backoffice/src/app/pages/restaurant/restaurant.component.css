@@ -1,0 +1,17 @@
+.logout-btn-color {
+    color: white !important;
+  }
+  
+  .a-custom:hover {
+    text-decoration: underline !important;
+    color: gray !important;
+  }
+  
+  .fw-n {
+    font-weight: 425 !important;
+  }
+  
+  .fs-n {
+    font-size: 1.5rem !important;
+  }
+  

@@ -8,8 +8,6 @@ const create = async (req: Request, res: Response, next: NextFunction) => {
     const restaurant: any = await new RestaurantGet().execute(
       restaurantId
     );
-    console.log(restaurant);
-    
     const table = await new TablesPost().execute({
       ...req.body,
       restaurant_id: restaurant.id

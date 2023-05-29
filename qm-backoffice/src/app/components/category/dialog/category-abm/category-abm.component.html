@@ -1,0 +1,33 @@
+<h1 mat-dialog-title class="{{ titleColor }}">{{ title }}</h1>
+<mat-dialog-content class="mat-typography">
+  <form class="form-horizontal min-width" [formGroup]="formGroup" style="min-width: 500px;">
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <h3>{{ subTitle }}</h3>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputName" class="col-sm-12 col-form-label">Nombre <span class="badge badge-danger"
+          *ngIf='validateAlert(formGroup.get("name"))'>campo requerido</span></label>
+      <div class="col-sm-12">
+        <input type="text" class='form-control {{ validateInput(formGroup.get("name")) }}'
+          [formControlName]="'name'" placeholder="Nombre" [readonly]="disabledForm">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputDescription" class="col-sm-12 col-form-label">Descripción <span class="badge badge-danger"
+          *ngIf='validateAlert(formGroup.get("description"))'>campo requerido</span></label>
+      <div class="col-sm-12">
+        <input type="text" class='form-control {{ validateInput(formGroup.get("description")) }}'
+          [formControlName]="'description'" placeholder="Descripción" [readonly]="disabledForm">
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<br>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="denyBtnValue" class="btn btn-{{ firstBtnColor }} btn-sm"
+    style="margin-right: 10px;">{{ firstBtnText }}</button>
+  <button mat-button [mat-dialog-close]="this.formGroup.value" class="btn btn-{{ secondBtnColor }} btn-sm"
+    [disabled]="!formGroup.valid || errorDate">{{ secondBtnText }}</button>
+</mat-dialog-actions>
