@@ -24,7 +24,7 @@ class UsersRepository {
             {
               model: models.rol,
               as: "rol",
-              attributes: ["id", "description", "code", "icon"]
+              attributes: ["id", "name", "description", "code", "icon"]
             }
           ]
         },
@@ -39,6 +39,14 @@ class UsersRepository {
       },
       order: [col("user_rol.rol.id")]
     });
+  }
+
+  post(data: any) {
+    return User.create(data);
+  }
+
+  getAll() {
+    return User.findAndCountAll();
   }
 
   auth(email: string) {

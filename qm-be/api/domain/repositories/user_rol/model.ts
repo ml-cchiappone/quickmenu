@@ -20,8 +20,7 @@ const UserRol = sequelize.define(
       allowNull: false
     },
     date_created: {
-      type: DataTypes.DATE,
-      allowNull: false
+      type: DataTypes.DATE
     },
     date_modified: {
       type: DataTypes.DATE,
