@@ -18,7 +18,7 @@ const Table = sequelize.define(
     },
     deleted: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: true
     },
     restaurant_id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -48,7 +48,7 @@ const Table = sequelize.define(
   }
 );
 
-// Table.belongsTo(Restaurant, { as: "restaurant", foreignKey: "restaurant_id" });
+Table.belongsTo(Restaurant, { as: "restaurant", foreignKey: "restaurant_id" });
 // Table.hasMany(Order, { as: "orders", foreignKey: "table_id" });
 
 export default Table;
