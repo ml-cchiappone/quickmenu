@@ -5,8 +5,7 @@ export default class RestaurantsGetAll {
 
   async execute() {
     try {
-      const { rows } = await new RestaurantsRepository().getAll();
-      return rows;
+      return await new RestaurantsRepository().getAll();
     } catch (error) {
       console.log(
         "🚀 ~ file: getAll.ts:7 ~ RestaurantsGetAll ~ execute ~ error:",
