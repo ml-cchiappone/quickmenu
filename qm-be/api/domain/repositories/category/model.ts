@@ -22,7 +22,7 @@ const Category = sequelize.define(
     },
     deleted: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: true
     },
     restaurant_id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -52,7 +52,7 @@ const Category = sequelize.define(
   }
 );
 
-Category.hasMany(Product, { as: "products", foreignKey: "category_id" });
+// Category.hasMany(Product, { as: "products", foreignKey: "category_id" });
 // Category.belongsTo(Restaurant, {
 //   as: "restaurant",
 //   foreignKey: "restaurant_id"
