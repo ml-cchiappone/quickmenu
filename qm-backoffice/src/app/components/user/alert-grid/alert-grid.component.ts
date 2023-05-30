@@ -19,7 +19,6 @@ import * as _ from 'lodash';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
 import { GridModel } from '../../../models/grid.model';
-import { ContactModel } from '../../../models/contact.model';
 import { UserModel } from '../../../models/user.model';
 import { AlertModel } from 'src/app/models/alert.model';
 import * as moment from 'moment-mini';
@@ -400,10 +399,6 @@ export class AlertGridComponent implements OnInit {
     }
   }
 
-  goToAnnotation($myParam: string = ''): void {
-    this.router.navigate(['/contact/annotation', $myParam]);
-  }
-
   // @@ FIXME: move the styles to the css file
   formatStatusCol: Formatter = (
     row: number,
@@ -506,30 +501,6 @@ export class AlertGridComponent implements OnInit {
     );
   }
 
-  deleteContact(formData: any) {
-    const alertId = formData.alertId;
-    try {
-      this.alertService.delete(alertId).subscribe(
-        (resp: ContactModel) => {
-          this.callSnackBar(
-            'La alerta fue eliminada correctamente!',
-            2500,
-            'notif-success'
-          );
-          this.ngOnInit();
-        },
-        err => {
-          this.callSnackBar(
-            'Hubo un error al eliminar la alerta!',
-            2500,
-            'notif-danger'
-          );
-        }
-      );
-    } catch {
-      console.log('error');
-    }
-  }
 
   callSnackBar(text: string, duration: number, color: string) {
     this.snackbar.openFromComponent(SnackBarComponent, {
