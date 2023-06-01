@@ -42,6 +42,7 @@ const Rol = sequelize.define(
   }
 );
 
-// Rol.hasMany(UserRol, { as: "users_rol", foreignKey: "rol_id" });
+Rol.hasMany(UserRol, { as: "users_rol", foreignKey: "rol_id" });
+UserRol.belongsTo(Rol, { foreignKey: "rol_id" });
 
 export default Rol;

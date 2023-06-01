@@ -52,7 +52,6 @@ const Category = sequelize.define(
   }
 );
 
-// Category.hasMany(Product, { as: "products", foreignKey: "category_id" });
 // Category.belongsTo(Restaurant, {
 //   as: "restaurant",
 //   foreignKey: "restaurant_id"

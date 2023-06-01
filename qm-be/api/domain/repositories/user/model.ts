@@ -50,6 +50,4 @@ const User = sequelize.define(
 );
 
 User.hasMany(Restaurant, { as: "restaurants", foreignKey: "user_id" });
-User.hasMany(UserRol, { as: "user_rol", foreignKey: "user_id" });
-
 export default User;

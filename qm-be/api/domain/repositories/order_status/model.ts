@@ -14,6 +14,10 @@ const OrderStatus = sequelize.define(
     status: {
       type: DataTypes.STRING(45),
       allowNull: false
+    },
+    status_code: {
+      type: DataTypes.STRING(45),
+      allowNull: false
     }
   },
   {

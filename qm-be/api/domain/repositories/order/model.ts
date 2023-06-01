@@ -93,5 +93,6 @@ Order.belongsTo(OrderStatus, {
 });
 Order.belongsTo(Restaurant, { as: "restaurants", foreignKey: "restaurant_id" });
 Order.belongsTo(Table, { as: "tables", foreignKey: "table_id" });
+Restaurant.hasMany(Order, { as: "orders", foreignKey: "restaurant_id" });
 
 export default Order;

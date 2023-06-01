@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../../infraestructure/persistence/mysql.config";
 import Rol from "../rol/model";
+import User from "../user/model";
 
 const UserRol = sequelize.define(
   "user_rol",
@@ -41,7 +42,7 @@ const UserRol = sequelize.define(
   }
 );
 
-// UserRol.belongsTo(User, { foreignKey: "user_id" });
-UserRol.belongsTo(Rol, { foreignKey: "rol_id" });
+UserRol.belongsTo(User, { foreignKey: "user_id" });
+User.hasMany(UserRol, { as: "user_rol", foreignKey: "user_id" });
 
 export default UserRol;

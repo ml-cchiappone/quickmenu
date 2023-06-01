@@ -75,6 +75,7 @@ const Product = sequelize.define(
 );
 
 Product.belongsTo(Category, { as: "categories", foreignKey: "category_id" });
+Category.hasMany(Product, { as: "products", foreignKey: "category_id" });
 // Product.hasMany(OrderProduct, {
 //   as: "order_products",
 //   foreignKey: "product_id"
