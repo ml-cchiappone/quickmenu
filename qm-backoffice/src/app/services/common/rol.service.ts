@@ -9,14 +9,12 @@ import { GridModel } from '../../models/grid.model';
 import { UserModel } from '../../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RolService {
   private _url = `${BACKEND_URL}/mobile/roles`;
 
-  constructor(
-    private _http: HttpClient,
-  ) { }
+  constructor(private _http: HttpClient) {}
 
   get(rolId: string): Observable<RolModel> {
     const url = `${this._url}/${rolId}`;
@@ -25,7 +23,9 @@ export class RolService {
 
   create(data: any): Observable<RolModel> {
     const url = `${this._url}/`;
-    return this._http.post<RolModel>(url, data).pipe(catchError(this.handleError));
+    return this._http
+      .post<RolModel>(url, data)
+      .pipe(catchError(this.handleError));
   }
 
   delete(id: any): Observable<{}> {
@@ -35,26 +35,29 @@ export class RolService {
 
   update(id: number, data: any): Observable<RolModel> {
     const url = `${this._url}/${id}`;
-    return this._http.patch<RolModel>(url, data).pipe(catchError(this.handleError));
+    return this._http
+      .patch<RolModel>(url, data)
+      .pipe(catchError(this.handleError));
   }
 
   subscribe(userId: number, data: any): Observable<any> {
     const url = `${this._url}/${userId}/activate`;
-    return this._http.post(url, data)
-      .pipe(
-        map(resp => resp),
-        catchError(err => throwError(err)) 
-      )
+    return this._http.post(url, data).pipe(
+      map((resp) => resp),
+      catchError((err) => throwError(err))
+    );
   }
 
   getList(): Observable<GridModel<RolModel>> {
     const url = `${this._url}`;
-    return this._http.get<GridModel<RolModel>>(url).pipe(catchError(this.handleError));
+    return this._http
+      .get<GridModel<RolModel>>(url)
+      .pipe(catchError(this.handleError));
   }
 
-  getUsersRol(rolCode: string): Observable<GridModel<UserModel>>{
-    const url = `${this._url}/users/${rolCode}`;
-    return this._http.get<GridModel<UserModel>>(url).pipe(catchError(this.handleError));
+  getUsersByRol(rolCode: string): Observable<RolModel> {
+    const url = `${this._url}/${rolCode}/users`;
+    return this._http.get<RolModel>(url).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -65,11 +68,10 @@ export class RolService {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+      );
     }
     // Return an observable with a user-facing error message.
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError('Something bad happened; please try again later.');
   }
 }

@@ -1,3 +1,5 @@
+export { OrderService } from './common/order.service';
+export { RestaurantUserService } from './common/restaurant-user.service';
 export { LoginGuard } from './guards/login.guard';
 export { UserService } from './common/user.service';
 export { RolService } from './common/rol.service';

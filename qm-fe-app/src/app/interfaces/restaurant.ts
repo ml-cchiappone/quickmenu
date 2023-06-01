@@ -24,3 +24,12 @@ export interface Product {
   quantity?: number;
   totalPrice?: number;
 }
+
+export interface GridModel<T> {
+  paging: {
+    limit?: number;
+    offset?: number;
+    total: number;
+  };
+  results: Array<T>;
+}

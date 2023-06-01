@@ -1,4 +1,5 @@
-import { ProvinceModel } from "./province.model";
+import { ProvinceModel } from './province.model';
+import { OrderModel } from './order.model';
 
 export interface RestaurantModel {
   id: number;
@@ -14,4 +15,11 @@ export interface RestaurantModel {
   province: ProvinceModel;
   currency_symbol: string;
   deleted: number;
+}
+
+export interface RestaurantOrders {
+  id: number;
+  string_id: string;
+  name: string;
+  orders: Array<OrderModel>;
 }

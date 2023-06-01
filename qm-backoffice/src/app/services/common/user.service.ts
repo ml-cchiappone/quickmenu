@@ -18,7 +18,7 @@ interface UserLoginData {
   business: string;
 }
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   user: UserModel;

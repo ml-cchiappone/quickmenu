@@ -1,6 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Restaurant, Category, Product } from "../interfaces/restaurant";
+import {
+  Restaurant,
+  Category,
+  Product,
+  GridModel
+} from "../interfaces/restaurant";
 import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
 
@@ -25,8 +30,10 @@ export class RestaurantService {
     return this.http.get<Product[]>("/assets/data/products.json");
   }
 
-  getRestaurantCategoriesAndProducts(restaurantId: string) {
-    const url = `${this._url}/${restaurantId}/categories/products`;
-    return this.http.get<Category[]>(url);
+  getRestaurantCategoriesAndProducts(
+    restaurantId: string
+  ): Observable<GridModel<Category>> {
+    const url = `${this._url}/${restaurantId}/products`;
+    return this.http.get<GridModel<Category>>(url);
   }
 }
