@@ -32,6 +32,14 @@ class OrdersRepository {
       await transaction.rollback();
     }
   }
+
+  async update(orderId: number, data: any) {
+    return Order.update(data, {
+      where: {
+        id: orderId
+      }
+    });
+  }
   get(orderId: number) {
     return Order.findOne({
       attributes: ["id"],

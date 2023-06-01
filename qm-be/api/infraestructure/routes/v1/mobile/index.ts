@@ -4,10 +4,14 @@ import getRestaurant from "../../../../interface/restaurants/get";
 import deleteRestaurant from "../../../../interface/restaurants/delete";
 import updateRestaurant from "../../../../interface/restaurants/update";
 import createRestaurant from "../../../../interface/restaurants/create";
+import getOrdersByOrderStatus from "../../../../interface/restaurants/getOrdersByOrderStatus";
 import {
   getAllCategories,
   getAllCategoriesAndProducts
 } from "../../../../interface/categories/getAll";
+
+import createRestaurantUsers from "../../../../interface/restaurant_user/create";
+
 import getCategory from "../../../../interface/categories/get";
 import createCategory from "../../../../interface/categories/create";
 import deleteCategory from "../../../../interface/categories/delete";
@@ -25,6 +29,7 @@ import deleteProduct from "../../../../interface/products/delete";
 import updateProduct from "../../../../interface/products/update";
 
 import createOrder from "../../../../interface/orders/post";
+import updateOrder from "../../../../interface/orders/update";
 import getOrder from "../../../../interface/orders/get";
 
 import getUser from "../../../../interface/users/get";
@@ -33,6 +38,7 @@ import getAllUsers from "../../../../interface/users/getAll";
 import auth from "../../../../interface/users/auth";
 
 import getAllRoles from "../../../../interface/roles/getAll";
+import getAllUsersByRol from "../../../../interface/roles/getAllByRol";
 import createUserRol from "../../../../interface/user_roles/create";
 import deleteUserRol from "../../../../interface/user_roles/delete";
 
@@ -49,6 +55,9 @@ router.get("/restaurants/:restaurantId", getRestaurant);
 router.delete("/restaurants/:restaurantId", deleteRestaurant);
 router.post("/restaurants/:restaurantId", updateRestaurant);
 router.post("/restaurants", createRestaurant);
+
+// Restaurant users
+router.post("/restaurants/:restaurantId/users/:userId", createRestaurantUsers);
 
 // Categories
 router.delete(
@@ -85,15 +94,18 @@ router.get(
   "/restaurants/:restaurantId/categories/:categoryId/products",
   getAllProductsByCategory
 );
+router.get("/restaurants/:restaurantId/products", getAllCategoriesAndProducts);
+
 router.get(
-  "/restaurants/:restaurantId/categories/products",
-  getAllCategoriesAndProducts
+  "/restaurants/:restaurantId/orders/order_status/:status",
+  getOrdersByOrderStatus
 );
 
 // Orders
 router.get("/orders", getOrder);
 router.post("/orders", createOrder);
 router.get("/orders/:orderId", getOrder);
+router.post("/orders/:orderId/status", updateOrder);
 
 // Users
 router.get("/users/:userId", getUser);
@@ -105,6 +117,7 @@ router.delete("/users/:userId/roles/:rolId", deleteUserRol);
 
 // Roles
 router.get("/roles", getAllRoles);
+router.get("/roles/:rolCode/users", getAllUsersByRol);
 
 // Roles
 router.get("/provinces", getAllProvinces);

@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Restaurant from "../../domain/repositories/restaurant/model";
 import sequelize from "../persistence/mysql.config";
 const models = sequelize.models;
@@ -66,6 +67,51 @@ class RestaurantsRepository {
     return Restaurant.create({
       ...data,
       string_id: snake_case_string(data.name)
+    });
+  }
+
+  getOrdersByOrderStatus(restaurantId: string, status: any) {
+    console.log(restaurantId);
+    console.log(status);
+    
+    return Restaurant.findAndCountAll({
+      attributes: [
+        "id",
+        "string_id",
+        "name",
+      ],
+      include: [
+        {
+          model: models.order,
+          as: "orders",
+          attributes: ["id"],
+          include: [
+            {
+              model: models.table,
+              as: "tables",
+              attributes: ["description"]
+            },
+            {
+              model: models.order_status,
+              as: "order_status",
+              attributes: ["status", "status_code"],
+              where: {
+                status_code: {
+                  [Op.eq]: status
+                }
+              }
+            },
+            {
+              model: models.order_payment_status,
+              as: "order_payment_status",
+              attributes: ["status", "status_code"]
+            }
+          ]
+        }
+      ],
+      where: {
+        string_id: restaurantId
+      }
     });
   }
 }

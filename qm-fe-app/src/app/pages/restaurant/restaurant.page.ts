@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RestaurantService } from "../../services/restaurant.service";
-import { Category, Product } from "../../interfaces/restaurant";
+import { Category, Product, GridModel } from '../../interfaces/restaurant';
 import { StorageService } from "src/app/services/storage.service";
 
 @Component({
@@ -46,9 +46,9 @@ export class RestaurantPage implements OnInit {
       this.restaurantService
         .getRestaurantCategoriesAndProducts(this.restaurantId)
         .subscribe(
-          (resp) => {
+          (resp: GridModel<Category>) => {
             if (resp) {
-              this.categories = resp;
+              this.categories = resp.results;
               this.setRestaurantToStorage();
             } else {
               // TODO: Si la respuesta no es valida, navegar a página de error
@@ -60,6 +60,8 @@ export class RestaurantPage implements OnInit {
           }
         );
     } catch (error) {
+      console.log(error);
+      
       // TODO: manejar el error
     }
   }

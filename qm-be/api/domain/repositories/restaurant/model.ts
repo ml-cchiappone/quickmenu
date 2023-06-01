@@ -99,7 +99,6 @@ const Restaurant = sequelize.define(
 
 Restaurant.belongsTo(Province, { as: "province", foreignKey: "province_id" });
 Restaurant.hasMany(Category, { as: "categories", foreignKey: "restaurant_id" });
-// Restaurant.hasMany(Order, { as: "orders", foreignKey: "restaurant_id" });
 Restaurant.hasMany(Product, { as: "products", foreignKey: "restaurant_id" });
 // Restaurant.hasMany(Table, { as: "tables", foreignKey: "restaurant_id" });
 // Restaurant.belongsTo(User, { as: "user", foreignKey: "user_id" });

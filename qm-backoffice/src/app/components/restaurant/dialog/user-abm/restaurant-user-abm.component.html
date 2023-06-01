@@ -1,0 +1,57 @@
+<h1 mat-dialog-title class="{{ titleColor }}">{{ title }}</h1>
+<mat-dialog-content class="mat-typography">
+  <form class="form-horizontal min-width">
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <h3>{{ subTitle }}</h3>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="typeahead-focus" class="col-md-12 col-form-label">Email</label>
+      <div class="col-md-12">
+        <input
+          id="typeahead-template" name="user"
+          type="text" class="form-control"
+          typeahead="address as address.formatted_address for address in getLocation($viewValue)"
+          [(ngModel)]="model"
+          [container]="'body'"
+          [placement]="'bottom-left'"
+          [ngbTypeahead]="search" 
+          [resultTemplate]="rt"
+          [inputFormatter]="formatter"
+          [editable]='false'
+          [readOnly]='model'/>
+        <ng-template #rt let-r="result" let-t="term">
+          <div style="width: 350px; height: 100%;">
+            <div style="width: 80%; float: right;">
+              <p class="m-0 pb-1"><strong>{{r.email}}</strong></p>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <div class="form-group col-md-12" id="error-create" hidden>
+        <div class="alert alert-danger alert-dismissible">
+          <h5><i class="icon fas fa-ban"></i> Alerta!</h5>
+          <span id="error-msg"></span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row" [hidden]="!model">
+    <div class="col-md-12">
+      <div class="info-box bg-success mb-0">
+        <div class="info-box-content">
+          <p class="m-0"><strong>Email:</strong> {{ model?.email }} </p>
+        </div>
+        <span class="info-box-icon" style="align-items: baseline; width: 7%;">
+          <button class="btn btn-danger btn-sm" (click)='clearModel()'><i class="far fa-trash-alt"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<br>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="denyBtnValue" class="btn btn-{{ firstBtnColor }} btn-sm" style="margin-right: 10px;">{{ firstBtnText }}</button>
+  <button mat-button [mat-dialog-close]="model" class="btn btn-{{ secondBtnColor }} btn-sm" [disabled]="!model">{{ secondBtnText }}</button>
+</mat-dialog-actions>

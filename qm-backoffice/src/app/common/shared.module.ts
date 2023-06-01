@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SafeHtmlPipe } from '../pipe/safe-html.pipe';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatListModule } from '@angular/material/list';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import localeEsAr from '@angular/common/locales/es-AR';
@@ -56,7 +57,8 @@ registerLocaleData(localeEsAr);
     MatSlideToggleModule,
     NgSelectModule,
     NgOptionHighlightModule,
-    MatRadioModule
+    MatRadioModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [],

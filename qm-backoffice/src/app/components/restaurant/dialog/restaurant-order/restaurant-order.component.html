@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{ title }} #{{order?.id}} - {{order?.tables?.description}} - {{order?.restaurants?.name}}</h1>
+<mat-dialog-content class="mat-typography">
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <h3><b>Detalle</b></h3>
+            <h3><b>Estado del pago:</b> {{order?.order_payment_status?.status}}</h3>
+            <h3><b>Estado del pedido:</b> {{order?.order_status?.status}}</h3>
+            <h3><b>Items:</b></h3>
+            <mat-list>
+              <mat-list-item *ngFor="let order_product of order?.order_products">- {{order_product?.products?.name}}</mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+</mat-dialog-content>
+<br>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="denyBtnValue" class="btn btn-danger btn-sm" (click)="changeOrderStatus(order.id, 'rejected')"
+  style="margin-right: 10px;">Rechazar</button>
+  <button mat-button [mat-dialog-close]="" class="btn btn-success btn-sm" (click)="changeOrderStatus(order.id, 'in_progress')"
+  style="margin-right: 10px;">Aceptar</button>
+</mat-dialog-actions>

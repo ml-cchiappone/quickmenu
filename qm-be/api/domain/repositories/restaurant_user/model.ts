@@ -1,9 +1,10 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../../infraestructure/persistence/mysql.config";
-import Order from "../order/model";
+import Rol from "../rol/model";
+import User from "../user/model";
 
-const OrderPaymentStatus = sequelize.define(
-  "order_payment_status",
+const RestaurantUser = sequelize.define(
+  "restaurant_user",
   {
     id: {
       autoIncrement: true,
@@ -11,17 +12,17 @@ const OrderPaymentStatus = sequelize.define(
       allowNull: false,
       primaryKey: true
     },
-    status: {
-      type: DataTypes.STRING(45),
+    user_id: {
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false
     },
-    status_code: {
-      type: DataTypes.STRING(45),
+    restaurant_id: {
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false
     }
   },
   {
-    tableName: "order_payment_status",
+    tableName: "restaurant_user",
     timestamps: false,
     indexes: [
       {
@@ -34,9 +35,7 @@ const OrderPaymentStatus = sequelize.define(
   }
 );
 
-// OrderPaymentStatus.hasMany(Order, {
-//   as: "orders",
-//   foreignKey: "order_payment_status_id"
-// });
+RestaurantUser.belongsTo(User, { foreignKey: "user_id" });
+User.hasMany(RestaurantUser, { as: "restaurant_user", foreignKey: "user_id" });
 
-export default OrderPaymentStatus;
+export default RestaurantUser;

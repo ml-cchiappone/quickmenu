@@ -7,8 +7,5 @@ export interface UserRolModel {
 
 export enum AvailableRoles {
   admin = 'admin',
-  project = 'project',
-  nurse = 'nurse',
-  contact = 'contact',
-  calendar = 'calendar'
+  restaurant = 'restaurant',
 }
