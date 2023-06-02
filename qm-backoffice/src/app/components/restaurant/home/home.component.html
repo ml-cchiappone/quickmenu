@@ -29,7 +29,7 @@
               </tr>
             </thead>
             <tbody>
-              <ng-container *ngIf="restaurantReceivedOrdersCount !== 0; else elseCategoryTemplate">
+              <ng-container *ngIf="restaurantReceivedOrdersCount <= 0; else elseReceivedOrdersTemplate">
                 <ng-container  *ngFor="let restaurantReceivedOrders of restaurantReceivedOrdersList">
                   <tr *ngFor="let order of restaurantReceivedOrders.orders | slice:0:3; let i=index">
                     <td>{{ order.id }}</td>
@@ -58,7 +58,7 @@
                   </tr>
               </ng-container>
               </ng-container>
-              <ng-template #elseCategoryTemplate>
+              <ng-template #elseReceivedOrdersTemplate>
                 <tr>
                   <td class="text-center" colspan="4">
                     -- Todavía no has recibido pedidos --
