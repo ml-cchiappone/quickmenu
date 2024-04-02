@@ -25,17 +25,21 @@
                 <th>#</th>
                 <th>Mesa</th>
                 <th>Estado de pago</th>
+                <th>Estado del pedido</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <ng-container *ngIf="restaurantReceivedOrdersCount <= 0; else elseReceivedOrdersTemplate">
+              <ng-container *ngIf="restaurantReceivedOrdersCount > 0; else elseReceivedOrdersTemplate">
                 <ng-container  *ngFor="let restaurantReceivedOrders of restaurantReceivedOrdersList">
                   <tr *ngFor="let order of restaurantReceivedOrders.orders | slice:0:3; let i=index">
                     <td>{{ order.id }}</td>
                     <td>{{ order?.tables?.description }}</td>
                     <td class="text-center">
                       <div style="padding: 0 5px;font-weight: bold;color: white;padding: 2px;"  [style.background]="order?.order_payment_status?.status_code === 'pending' ? '#ef8c82' : '#63c563'"> {{ order?.order_payment_status?.status }}</div>
+                    </td>
+                    <td class="text-center">
+                      <div style="padding: 0 5px;padding: 2px;"> {{ order?.order_status?.status }}</div>
                     </td>
                     <td class="text-center">
                       <button
@@ -60,7 +64,7 @@
               </ng-container>
               <ng-template #elseReceivedOrdersTemplate>
                 <tr>
-                  <td class="text-center" colspan="4">
+                  <td class="text-center" colspan="5z">
                     -- Todavía no has recibido pedidos --
                   </td>
                 </tr>
@@ -132,6 +136,8 @@
                     <tr>
                       <td class="text-center" colspan="4">
                         -- Sin categorias creadas! --
+                        <button class="btn btn-sm btn-success float-right" style="margin-right: 10px;" (click)="goToCategoryView()"><i
+                          class="fas fa-clipboard"></i> Crear categoria</button>
                       </td>
                     </tr>
                   </ng-template>
@@ -200,6 +206,8 @@
                       <tr>
                         <td class="text-center" colspan="4">
                           -- Sin mesas creadas! --
+                          <button class="btn btn-sm btn-success float-right" style="margin-right: 10px;" (click)="goToTableView()"><i
+                            class="fas fa-clipboard"></i> Crear mesa</button>
                         </td>
                       </tr>
                     </ng-template>
@@ -215,6 +223,6 @@
           </div>
           <div class="col-lg-6">
             <button class="btn btn-info btn-block float-center" (click)="openDialogAddUser()"><i
-              class="fas fa-list"></i> Agregar usuarios</button>
+              class="fas fa-user"></i> Agregar usuarios</button>
           </div>
         </div>

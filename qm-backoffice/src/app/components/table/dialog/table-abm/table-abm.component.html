@@ -1,5 +1,8 @@
 <h1 mat-dialog-title class="{{ titleColor }}">{{ title }}</h1>
-<mat-dialog-content class="mat-typography">
+<div *ngIf="action=='view'">
+  <qrcode [qrdata]="stringQrCode" [width]="250" [errorCorrectionLevel]="'M'"></qrcode>
+</div>
+<mat-dialog-content class="mat-typography"  *ngIf="action!='view'">
   <form class="form-horizontal min-width" [formGroup]="formGroup" style="min-width: 500px;">
     <div class="form-group row">
       <div class="col-sm-12">
@@ -17,7 +20,7 @@
   </form>
 </mat-dialog-content>
 <br>
-<mat-dialog-actions align="end">
+<mat-dialog-actions align="end" *ngIf="action!='view'">
   <button mat-button [mat-dialog-close]="denyBtnValue" class="btn btn-{{ firstBtnColor }} btn-sm"
     style="margin-right: 10px;">{{ firstBtnText }}</button>
   <button mat-button [mat-dialog-close]="this.formGroup.value" class="btn btn-{{ secondBtnColor }} btn-sm"

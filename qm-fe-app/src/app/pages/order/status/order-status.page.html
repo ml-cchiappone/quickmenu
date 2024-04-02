@@ -10,7 +10,8 @@
     <ion-card>
         <ion-card-header>
           <ion-card-title>{{order?.restaurants?.name}} - {{order?.tables?.description}}</ion-card-title>
-          <ion-card-subtitle>Estado del pedido: {{order?.order_status?.status}}</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="order?.order_status?.status_code == 'finished'">Estado del pedido: {{order?.order_status?.status}}. ✔️ <br>En breve será entregado en tu mesa.  </ion-card-subtitle>
+          <ion-card-subtitle *ngIf="order?.order_status?.status_code != 'finished'">Estado del pedido: {{order?.order_status?.status}}.</ion-card-subtitle>
           <!-- TODO:! Implementar https://github.com/RbkGh/NgFluentOrderTracker -->
         </ion-card-header>
         <ion-card-content>

@@ -18,6 +18,7 @@ export class OrderPage implements OnInit {
   productsOrder: Product[];
   totalAmount: number;
   restaurantId: number;
+  tableId: number;
   constructor(
     private orderService: OrderService,
     private storageService: StorageService,
@@ -31,6 +32,7 @@ export class OrderPage implements OnInit {
     this.createOrUpdateOrderEntity();
     this.calculateTotalAmount();
     this.restaurantId = await this.storageService.get("restaurant_id");
+    this.tableId = await this.storageService.get("table_id");
   }
 
   async getOrder() {
@@ -121,7 +123,7 @@ export class OrderPage implements OnInit {
         .setOrder({
           order: {
             restaurant_id: this.restaurantId,
-            table_id: 1
+            table_id: this.tableId
           },
           products_order: productsOrderEntity
         })

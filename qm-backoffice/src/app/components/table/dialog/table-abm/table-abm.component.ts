@@ -1,10 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FE_APP } from 'src/app/config/config';
 
 interface dataForm {
   id: number;
   description: string;
+  restaurant_id?: string;
 }
 
 @Component({
@@ -28,6 +30,7 @@ export class TableAbmComponent implements OnInit {
   errorDate: Boolean = false;
   dataForm: dataForm;
   disabledForm: any = undefined;
+  stringQrCode: string = ""
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -65,6 +68,9 @@ export class TableAbmComponent implements OnInit {
     if (this.action === 'delete') {
       this.disabledForm = 'true';
     }
+    if (this.action === 'view') {
+      this.generateQR();
+    }
 
     if (this.dataForm) {
       description = this.dataForm.description;
@@ -95,5 +101,9 @@ export class TableAbmComponent implements OnInit {
       return 'is-invalid';
     }
     return '';
+  }
+
+  generateQR(){
+    this.stringQrCode = `${FE_APP}/restaurant/${this.dataForm.restaurant_id}?t=${this.dataForm.id}&ref=QR`;    
   }
 }

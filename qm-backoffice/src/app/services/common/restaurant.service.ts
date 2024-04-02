@@ -50,8 +50,8 @@ export class RestaurantService {
       .pipe(catchError(this.handleError));
   }
 
-  getOrdersByOrderStatus(id: string, order_status_code) {
-    const url = `${this._url}/${id}/orders/order_status/${order_status_code}`;
+  getOrdersByOrderStatus(id: string, order_status_code = null) {
+    const url = `${this._url}/${id}/orders/order_status/${order_status_code ? order_status_code : "all"}`;
     return this._http
       .get<GridModel<RestaurantOrders>>(url)
       .pipe(catchError(this.handleError));

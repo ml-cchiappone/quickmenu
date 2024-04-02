@@ -33,6 +33,7 @@
     "@types/sizzle": "^2.3.2",
     "angular-calendar": "^0.28.22",
     "angular-slickgrid": "^2.25.1",
+    "angularx-qrcode": "^10.0.12",
     "bootstrap": "^4.6.0",
     "date-fns": "^2.16.1",
     "dompurify": "^2.2.6",
