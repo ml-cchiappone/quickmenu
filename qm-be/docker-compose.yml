@@ -1,9 +1,9 @@
 version: '3.7'
 services:
-  dashb:
-    container_name: qm-backoffice
+  backend:
+    container_name: backend-quickmenu
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '80:80' 
+      - '8080:8080'

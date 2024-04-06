@@ -9,7 +9,7 @@ const port = 8080;
 
 api.use(bodyParser.json());
 
-const whiteList=['http://localhost:4200','http://localhost:4201'];
+const whiteList=['http://localhost:4200','http://localhost:4201', 'https://cchiappone-quickmenu.my.kube.um.edu.ar'];
 api.use(cors({origin: whiteList}));
 api.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

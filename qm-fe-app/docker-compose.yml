@@ -1,9 +1,9 @@
 version: '3.7'
 services:
   dashb:
-    container_name: qm-backoffice
+    container_name: qm-fe-app
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '80:80' 
+      - '4200:4200' 

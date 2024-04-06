@@ -35,7 +35,7 @@ export class RestaurantHomeComponent implements OnInit {
   rolRestaurantEnabled: boolean = false;
   categoryList: Array<CategoryModel> = [];
   tableList: Array<TableModel> = [];
-  restaurantReceivedOrdersCount: number;
+  restaurantReceivedOrdersCount: number = 0;
   restaurantReceivedOrdersList: Array<RestaurantOrders> = [];
   user: UserModel;
   restaurantId: string;
@@ -63,7 +63,8 @@ export class RestaurantHomeComponent implements OnInit {
       this.restaurantId = restaurantId;
       this.getCategoryList();
       this.getTableList();
-      this.getOrderListByOrderStatus('received');
+      this.getOrderListByOrderStatus();
+      // this.getOrderListByOrderStatus('received');
     } else {
       this.router.navigate(['/error']);
     }
@@ -198,7 +199,7 @@ export class RestaurantHomeComponent implements OnInit {
     }
   }
 
-  getOrderListByOrderStatus(order_status) {
+  getOrderListByOrderStatus(order_status = null) {
     const limit = 5;
     const offset = 0;
 
@@ -208,8 +209,8 @@ export class RestaurantHomeComponent implements OnInit {
         .subscribe(
           (resp: GridModel<RestaurantOrders>) => {
             // @@ TODO: no olvidar manejar cuando venga vacio!
-            this.restaurantReceivedOrdersCount = resp.paging.total;
-            this.restaurantReceivedOrdersList = resp.results;
+            this.restaurantReceivedOrdersCount =resp.results[0].orders.length;
+            this.restaurantReceivedOrdersList = resp.results;            
           },
           (err) => {
             //Mostrar vista de error de carga en el box

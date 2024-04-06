@@ -10,7 +10,9 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
 
     const userAuth: any = await new UsersAuth().execute(email, password);
-
+    if(!userAuth){
+      return res.status(401).send();
+    }
     const isSame = await bcrypt.compare(password, userAuth.password);
     delete userAuth.dataValues.password;
 

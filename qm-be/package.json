@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "dev": "NODE_ENV=development && tsc && nodemon",
-    "start": "ts-node-dev --respawn --transpileOnly ./index.ts",
+    "start": "set NODE_ENV=development && tsc && nodemon",
+    "dev": "ts-node-dev --respawn --transpileOnly ./index.ts",
     "start2": "ts-node index.ts"
   },
   "keywords": [],

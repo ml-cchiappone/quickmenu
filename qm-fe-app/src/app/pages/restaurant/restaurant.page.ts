@@ -11,6 +11,7 @@ import { StorageService } from "src/app/services/storage.service";
 })
 export class RestaurantPage implements OnInit {
   restaurantId: string = "";
+  tableId: string = "";
   categories: Category[];
   products: Product[];
   category: number;
@@ -31,7 +32,10 @@ export class RestaurantPage implements OnInit {
     # con el id obtener categorias 
     # con el id obtener productos 
     */
+   this.storageService.clear()
     this.restaurantId = this.route.snapshot.params.id; // TODO: Validar parámetro
+    this.tableId = this.route.snapshot.queryParams.t;
+    this.setTableToStorage();
     await this.getRestaurantCategoriesAndProducts();
     await this.getProductFromStorage();
     this.calculateTotalAmount();
@@ -89,6 +93,15 @@ export class RestaurantPage implements OnInit {
       this.storageService.set(
         "restaurant_id",
         this.categories[0].restaurant_id
+      );
+    }
+  }
+
+  setTableToStorage() {
+    if (this.tableId) {
+      this.storageService.set(
+        "table_id",
+        this.tableId
       );
     }
   }

@@ -71,8 +71,14 @@ class RestaurantsRepository {
   }
 
   getOrdersByOrderStatus(restaurantId: string, status: any) {
-    console.log(restaurantId);
-    console.log(status);
+    let whereOrderStatus;
+    if(status == 'all') {
+      whereOrderStatus = {
+        status_code: {
+          [Op.ne]: 'finished'
+        }
+      }
+    }
     
     return Restaurant.findAndCountAll({
       attributes: [
@@ -95,11 +101,7 @@ class RestaurantsRepository {
               model: models.order_status,
               as: "order_status",
               attributes: ["status", "status_code"],
-              where: {
-                status_code: {
-                  [Op.eq]: status
-                }
-              }
+              where: whereOrderStatus
             },
             {
               model: models.order_payment_status,

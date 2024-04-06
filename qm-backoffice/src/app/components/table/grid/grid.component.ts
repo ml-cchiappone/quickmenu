@@ -6,9 +6,7 @@ import {
   Column,
   GridOption,
   Formatter,
-  Filters,
   GridStateChange,
-  MultipleSelectOption,
 } from 'angular-slickgrid';
 import { PAGINATION_LIMIT } from '../../../config/config';
 import { MatDialog } from '@angular/material/dialog';
@@ -260,7 +258,7 @@ export class GridComponent implements OnInit {
 
     switch (columnDef.field) {
       case 'button':
-        this.goToProducts(dataContext.id);
+        this.openDialogTable('view', dataContext);
         break;
       case 'btnEdit':
         this.openDialogTable('edit', dataContext);
@@ -383,6 +381,11 @@ export class GridComponent implements OnInit {
     let secondBtnText = '';
 
     switch (action) {
+      case 'view':
+        title = 'Ver mesa';
+        subTitle = 'Escanear QR';
+        dataTable = {...dataTable, restaurant_id: this.restaurantId};        
+        break;
       case 'create':
         title = 'Crear mesa';
         subTitle = 'Complete el formulario para generar una nueva mesa';
@@ -467,10 +470,6 @@ export class GridComponent implements OnInit {
   }
 
   editTable(formData: any) {
-    console.log(
-      '🚀 ~ file: grid.component.ts:470 ~ GridComponent ~ editTable ~ formData:',
-      formData
-    );
     const tableId = formData.tableId;
     const restaurantId = this.restaurantId;
 

@@ -1,19 +1,9 @@
 import { Options, Sequelize } from "sequelize";
-// import { env } from "process";
-
-const env = {
-  HOST_IP: "http://localhost:4200",
-  SERVER_HOST: "http://localhost:4200",
-  MYSQL_DATABASE: "quickmenu",
-  MYSQL_USER: "root",
-  MYSQL_PASSWORD: "root",
-  MYSQL_PORT: 3306,
-  MYSQL_HOST: "localhost"
-};
+import process from "process";
 
 const options: Options = {
-  host: env.MYSQL_HOST,
-  port: Number(env.MYSQL_PORT),
+  host: process.env.MYSQL_HOST,
+  port: Number(process.env.MYSQL_PORT),
   dialect: "mysql",
   pool: {
     max: 50
@@ -22,9 +12,9 @@ const options: Options = {
 };
 
 const sequelize = new Sequelize(
-  env.MYSQL_DATABASE,
-  env.MYSQL_USER,
-  env.MYSQL_PASSWORD,
+  process.env.MYSQL_DATABASE || "quickmenu",
+  process.env.MYSQL_USER || "root",
+  process.env.MYSQL_PASSWORD,
   options
 );
 
@@ -32,7 +22,7 @@ sequelize
   .authenticate()
   .then(() => {
     console.log(
-      `Connection to ${env.MYSQL_DATABASE} db has been established successfully.`
+      `Connection to ${process.env.MYSQL_DATABASE} db has been established successfully.`
     );
   })
   .catch((err) => {

@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule, registerLocaleData } from '@angular/common';
+import { QRCodeModule } from 'angularx-qrcode';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -38,7 +39,7 @@ registerLocaleData(localeEsAr);
     DialogComponent,
     BreadcrumbsComponent
   ],
-  imports: [RouterModule, CommonModule, MatSnackBarModule, MatDialogModule],
+  imports: [RouterModule, CommonModule, MatSnackBarModule, MatDialogModule, QRCodeModule],
   exports: [
     Error404Component,
     HeaderComponent,
@@ -58,7 +59,8 @@ registerLocaleData(localeEsAr);
     NgSelectModule,
     NgOptionHighlightModule,
     MatRadioModule,
-    MatListModule
+    MatListModule, 
+    QRCodeModule
   ],
   providers: [],
   bootstrap: [],

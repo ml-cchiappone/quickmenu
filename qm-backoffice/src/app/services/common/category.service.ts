@@ -31,7 +31,7 @@ export class CategoryService {
   }
 
   create(data: any): Observable<CategoryModel> {
-    const url = `${this._url}`;
+    const url = `${BACKEND_URL}/mobile/restaurants/${data.restaurant_id}/categories`;
     return this._http
       .post<CategoryModel>(url, data)
       .pipe(catchError(this.handleError));

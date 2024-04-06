@@ -57,12 +57,12 @@ class OrdersRepository {
         {
           model: models.order_status,
           as: "order_status",
-          attributes: ["id", "status"]
+          attributes: ["id", "status", "status_code"]
         },
         {
           model: models.order_payment_status,
           as: "order_payment_status",
-          attributes: ["id", "status"]
+          attributes: ["id", "status", "status_code"]
         },
         {
           model: models.order_product,

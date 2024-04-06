@@ -14,8 +14,41 @@
 </mat-dialog-content>
 <br>
 <mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="denyBtnValue" class="btn btn-danger btn-sm" (click)="changeOrderStatus(order.id, 'rejected')"
+    <button mat-button
+      type="button"
+      class="btn btn-success btn-sm dropdown-toggle"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+      [disabled]="order?.order_status?.status_code == 'finished'"
+    >
+      Cambiar estado
+    </button>
+    <div class="dropdown-menu dropdown-menu-right menu-p">
+      <button
+      [mat-dialog-close]=""
+        class="btn btn-sm btn-primary btn-block mt-0 btn-brb-0"
+        (click)="changeOrderStatus(order.id, 'in_progress')"
+        >
+        <i class="far fa-play-circle"></i> En proceso
+      </button>
+      <button
+      [mat-dialog-close]=""
+        class="btn btn-sm btn-danger btn-block mt-0 btn-br-0"
+        (click)="changeOrderStatus(order.id, 'rejected')"
+        >
+        <i class="fas fa-ban"></i> Rechazar
+      </button>
+      <button
+      [mat-dialog-close]=""
+      class="btn btn-sm btn-success btn-block mt-0 btn-brt-0"
+      (click)="changeOrderStatus(order.id, 'finished')"
+    >
+      <i class="fas fa-check"></i> Finalizar
+    </button>
+    </div>
+  <!-- <button mat-button [mat-dialog-close]="denyBtnValue" class="btn btn-danger btn-sm" (click)="changeOrderStatus(order.id, 'rejected')"
   style="margin-right: 10px;">Rechazar</button>
-  <button mat-button [mat-dialog-close]="" class="btn btn-success btn-sm" (click)="changeOrderStatus(order.id, 'in_progress')"
-  style="margin-right: 10px;">Aceptar</button>
+  <button mat-button [mat-dialog-close]="" class="btn btn-success btn-sm" (click)="changeOrderStatus(order.id, 'finished')"
+  style="margin-right: 10px;">Aceptar</button> -->
 </mat-dialog-actions>
