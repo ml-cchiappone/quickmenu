@@ -10,7 +10,6 @@ const options: Options = {
   },
   logging: false
 };
-console.log(process.env);
 
 const sequelize = new Sequelize(
   process.env.MYSQL_DATABASE || "quickmenu",
