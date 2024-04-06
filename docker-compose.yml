@@ -1,12 +1,9 @@
 version: '3.3'
-networks:
-  app-network:
-    driver: bridge
 services:
   db:
     image: mysql:latest
     restart: always
-    container_name: db
+    container_name: db-quickmenu
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_USER: ${MYSQL_USER}
@@ -20,5 +17,55 @@ services:
       - dbdata:/var/lib/mysql
     networks:
       - app-network
+
+  backend:
+    build: ./qm-be
+    container_name: backend-quickmenu
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    networks:
+      - app-network
+
+  backoffice:
+    build:
+      context: ./qm-backoffice
+    container_name: backoffice-quickmenu
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+    environment:
+      - BACKEND_URL=http://backend:8080/v1
+    volumes:
+      - ./qm-backoffice:/usr/src/app
+    networks:
+      - app-network
+
+  frontend-app:
+    build: 
+      context: ./qm-fe-app
+    container_name: frontend-app-quickmenu
+    ports:
+      - '4200:4200'
+    depends_on:
+      - backend
+    environment:
+      - BACKEND_URL=http://backend:8080/v1
+    volumes:
+      - ./qm-fe-app:/usr/src/app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
+
 volumes:
   dbdata:

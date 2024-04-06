@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dashboard": {
+    "qm-backoffice": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/dashboard",
+            "outputPath": "dist/qm-backoffice",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -80,18 +80,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dashboard:build"
+            "browserTarget": "qm-backoffice:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "dashboard:build:production"
+              "browserTarget": "qm-backoffice:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dashboard:build"
+            "browserTarget": "qm-backoffice:build"
           }
         },
         "test": {
@@ -129,18 +129,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "dashboard:serve"
+            "devServerTarget": "qm-backoffice:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "dashboard:serve:production"
+              "devServerTarget": "qm-backoffice:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "dashboard",
+  "defaultProject": "qm-backoffice",
   "cli": {
     "analytics": "c73f06da-0134-4fea-b4f4-dd2d395c0b70"
   }

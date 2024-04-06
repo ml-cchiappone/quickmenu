@@ -4,7 +4,7 @@
   "defaultProject": "app",
   "newProjectRoot": "projects",
   "projects": {
-    "app": {
+    "qm-fe-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -14,7 +14,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "www",
+            "outputPath": "dist/qm-fe-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
