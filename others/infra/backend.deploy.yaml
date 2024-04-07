@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-quickmenu-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-quickmenu
+  template:
+    metadata:
+      labels:
+        app: backend-quickmenu
+    spec:
+      containers:
+        - name: backend-quickmenu
+          image: cchiappone/quickmenu-backend:0.1.1
+          env:
+            - name: MYSQL_HOST
+              value: db-quickmenu-service
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: quickmenu-secret
+                  key: db-user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: quickmenu-secret
+                  key: db-pass
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: quickmenu-secret
+                  key: db-name
+          ports:
+            - containerPort: 8080

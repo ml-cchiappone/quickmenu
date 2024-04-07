@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-app-quickmenu-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-app-quickmenu
+  template:
+    metadata:
+      labels:
+        app: frontend-app-quickmenu
+    spec:
+      containers:
+        - name: frontend-app-quickmenu
+          image: cchiappone/quickmenu-frontend-app:0.1.0
+          env:
+            - name: BACKEND_URL
+              value: http://backend-quickmenu-service:8080/v1
+          ports:
+            - containerPort: 4200

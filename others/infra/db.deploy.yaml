@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-quickmenu-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-quickmenu
+  template:
+    metadata:
+      labels:
+        app: db-quickmenu
+    spec:
+      containers:
+        - name: db-quickmenu
+          image: mysql:latest
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: quickmenu-secret
+                  key: db-user
+            - name: MYSQL_ROOT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: quickmenu-secret
+                  key: db-user
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: quickmenu-secret
+                  key: db-pass
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: quickmenu-mysql-pvc
